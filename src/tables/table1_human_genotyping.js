@@ -1,0 +1,5 @@
+const cols = [{"dataField": "field0", "text": "Assay"}, {"dataField": "field1", "text": "# Tissues"}, {"dataField": "field2", "text": "# Primary Cell"}, {"dataField": "field3", "text": "# Cell Line"}, {"dataField": "field4", "text": "# IPSC"}, {"dataField": "field5", "text": "# in vitro"}, {"dataField": "field6", "text": "# Stem Cell"}, {"dataField": "field7", "text": "Number of Experiments (Phase III)"}, {"dataField": "field8", "text": "Number of Experiments (all ENCODE)"}, {"dataField": "field9", "text": "Number of Experiments (ENCODE and Roadmap)"}];
+
+const data = [{'field8': 6, 'field9': 6, 'field2': 0, 'field3': 6, 'field0': 'DNA-PET', 'field1': 0, 'field6': 0, 'field7': 0, 'field4': 0, 'field5': 0}, {'field8': 123, 'field9': 142, 'field2': 54, 'field3': 62, 'field0': 'genotyping array', 'field1': 16, 'field6': 4, 'field7': 59, 'field4': 2, 'field5': 4}, {'field8': 9, 'field9': 9, 'field2': 1, 'field3': 0, 'field0': 'genotyping HTS', 'field1': 8, 'field6': 0, 'field7': 9, 'field4': 0, 'field5': 0}];
+
+export const table1_human_genotyping = {cols: cols, data: data};

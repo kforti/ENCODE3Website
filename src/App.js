@@ -9,7 +9,8 @@ import { HomePage } from './components/home';
 import { NavBar } from './components/navbar';
 import { FiguresCollection } from './components/figures-collection';
 import { StaticFigure } from './components/static-figure';
-
+import { TabTables, TablesCollection } from './components/tables-collection'
+import { TABLES } from './components/tables/index';
 
 function App() {
   return (
@@ -27,7 +28,13 @@ function App() {
             <FiguresCollection figures={supplemental_figs}/>
           </Route>
           <Route  path="/figure/:id" component={StaticFigure}/>
-          
+          <Route  path="/tables/:table" render={({ match, location }) => {
+                console.log(match.params.table)
+                return(
+                <TablesCollection tables={TABLES} initial_table={TABLES[match.params.table]}/>
+                )
+            }}>
+          </Route>
       </Switch>
       </Container>
     </Router>    
