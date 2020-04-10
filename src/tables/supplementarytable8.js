@@ -1,7 +1,7 @@
-const cols = [{"data": "field0", "title": "Experiment"},
-{"data": "field1", "title": "Peak File"},
-{"data": "field2", "title": "Signal File"},
-{"data": "field3", "title": "Cell Type"}];
+const cols = [{"dataField": "field0", "text": "Experiment", sort: true},
+{"dataField": "field1", "text": "Peak File", sort: true},
+{"dataField": "field2", "text": "Signal File", sort: true},
+{"dataField": "field3", "text": "Cell Type", sort: true}];
 
 const data = [
 {'field2': 'ENCFF332QJL', 'field3': 'fibroblast of upper leg skin', 'field0': 'ENCSR000ELX', 'field1': 'ENCFF161YZC'},

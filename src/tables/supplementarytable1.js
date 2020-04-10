@@ -1,15 +1,18 @@
 const cols = [
     {
 	"text": "ENCODE experiment ID",
-	"dataField": "accession"
+    "dataField": "accession",
+    sort: true
     },
     {
 	"text": "Cell Type",
-	"dataField": "ct"
+    "dataField": "ct",
+    sort: true
     },
     {
 	"text": "RBP target",
-	"dataField": "target"
+    "dataField": "target",
+    sort: true
     }
 ];
 
