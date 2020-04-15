@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 import { TablePage } from './table-page';
 
-const tables = ["Main Table", "supp-table"]
 
 const Tab = ({ children }) => (
     <div>

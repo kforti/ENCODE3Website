@@ -9,7 +9,7 @@ import { HomePage } from './components/home';
 import { NavBar } from './components/navbar';
 import { FiguresCollection } from './components/figures-collection';
 import { StaticFigure } from './components/static-figure';
-import { TabTables, TablesCollection } from './components/tables-collection'
+import { TablesCollection } from './components/tables-collection'
 import { TABLE_PAGES } from './tables';
 
 function App() {
