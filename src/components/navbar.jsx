@@ -13,7 +13,7 @@ export const NavBar = () => {
             <Link to={{pathname: "/"}} className="nav-item nav-link active">Home <span className="sr-only">(current)</span></Link>
             <Link to={{pathname: "/main-figures"}} className="nav-item nav-link" >Figures</Link>
             <Link to={{pathname: "/supplemental-figures"}} className="nav-item nav-link" >Supplemental Figures</Link>
-            <Link to={{pathname: "/tables/main_table"}} className="nav-item nav-link" >Tables</Link>
+            <Link to={{pathname: "/tables/extended_data_table_1"}} className="nav-item nav-link" >Tables</Link>
             <Link to={{pathname: "/contact"}} className="nav-item nav-link" >Contact</Link>
             </div>
       </nav>

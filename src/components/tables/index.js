@@ -10,7 +10,11 @@ import SupplementaryTable8 from './supplementarytable8'
 import SupplementaryTable9 from './supplementarytable9'
 import SupplementaryTable10 from './supplementarytable10'
 
-export const TABLES = {
+export const TABLE_PAGES = {
+    main_table: {page_id: "main_table_page_1"}
+}
+
+export const TABLES2 = {
     main_table: {component: Table1, title: "Table 1: Experiment Matrix", page_id: "main_table"},
     supplemental_1: {component: SupplementaryTable1, title: "Supp. Table 1: Surveyed RBPs", _id: "supplemental_1"},
     supplemental_2: {component: SupplementaryTable2, title: "Supp. Table 2: VISTA regions for PR curves", page_id: "supplemental_2"},

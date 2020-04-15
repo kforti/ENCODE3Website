@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
+import { TablePage } from './table-page';
 
 const tables = ["Main Table", "supp-table"]
 
@@ -18,12 +19,13 @@ const Tab = ({ children }) => (
 
 
 const Pagination = ({ items, active, onClick }) => {
+	console.log(items)
     return(
 		<nav aria-label="Page navigation example">
 		<ul class="pagination">
 			{items.map( (item, i) => (
 			<li key={i} className={item === active ? "active page-item" : "page-item"}>
-				<a class="page-link" href="#" onClick={() => {onClick(item)}}>{item === "main_table" ? "T1" : item.replace("supplemental_", "S")}</a>
+				<a class="page-link" href="#" onClick={() => {onClick(item)}}>{item.nav_slug}</a>
 			</li>
 		) )}
 		</ul>
@@ -31,17 +33,19 @@ const Pagination = ({ items, active, onClick }) => {
 	)
 }
 
-export const TablesCollection = ({tables, initial_table}) => {
-	const [activeTable, setActiveTable] = useState(initial_table);
+export const TablesCollection = ({table_pages, initial_page}) => {
+	const [activePage, setActivePage] = useState(initial_page);
+	console.log(table_pages)
 	
-	const onTableClick = (name) =>{
-		setActiveTable(tables[name])
+	const onTableClick = (page) =>{
+		console.log(page)
+		setActivePage(page)
 	}
 
 	return(
 		<Tab>
 	      <div className="row">
-	          <Pagination items={Object.entries(tables).map((item) => (item[0]))} active={activeTable.id}
+	          <Pagination items={Object.entries(table_pages).map((item) => item[1])} active={activePage}
 	            onClick={onTableClick} />
               </div>
 	      <div className="row">
@@ -49,12 +53,12 @@ export const TablesCollection = ({tables, initial_table}) => {
 	          <div className="alert alert-info" style={{fontSize: "16pt"}}>
 	              <span className="glyphicon glyphicon-info-sign" style={{marginRight: "10px"}}></span>These tables are interactive. Click the column headers to sort, use the textboxes to search, and click the CSV buttons to download the table contents in CSV format.
 	          </div>
-	          {activeTable !== 6 ? null : (
+	          {activePage !== 6 ? null : (
 	            <div className="alert alert-info" style={{fontSize: "16pt"}}>
 	              <span className="glyphicon glyphicon-info-sign" style={{marginRight: "10px"}}></span>The colors in this table correspond to the bar colors in <b>Extended Data Figure 9</b>.
 	            </div>
 		  )}
-		  	<div><h2>{activeTable.title}</h2><activeTable.component /></div>
+			<div><h2>{activePage.title}</h2><TablePage page={activePage}/></div>
 	          
 	        </div>
 	      </div>	      

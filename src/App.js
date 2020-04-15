@@ -10,7 +10,7 @@ import { NavBar } from './components/navbar';
 import { FiguresCollection } from './components/figures-collection';
 import { StaticFigure } from './components/static-figure';
 import { TabTables, TablesCollection } from './components/tables-collection'
-import { TABLES } from './components/tables/index';
+import { TABLE_PAGES } from './tables';
 
 function App() {
   return (
@@ -30,8 +30,9 @@ function App() {
           <Route  path="/figure/:id" component={StaticFigure}/>
           <Route  path="/tables/:table" render={({ match, location }) => {
                 console.log(match.params.table)
+                let page = match.params.table ? match.params.table : "extended_data_table_1"
                 return(
-                <TablesCollection tables={TABLES} initial_table={TABLES[match.params.table]}/>
+                <TablesCollection table_pages={TABLE_PAGES} initial_page={TABLE_PAGES[page]}/>
                 )
             }}>
           </Route>
