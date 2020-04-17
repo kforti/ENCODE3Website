@@ -8,6 +8,7 @@ const { ExportCSVButton } = CSVExport;
 const { SearchBar } = Search;
 
 export const Table = ({ title, keyField, data, columns, fileName }) => {
+	
     return(
     <div>
         <h3>{title}</h3>
@@ -18,10 +19,13 @@ export const Table = ({ title, keyField, data, columns, fileName }) => {
 			>
 			{
 				props => (
-				<div>
+					<div>
 					<ExportCSVButton className="btn-primary" { ...props.csvProps } >Export CSV</ExportCSVButton>					
 					<SearchBar { ...props.searchProps } style={{marginLeft: '20px'}}/>
-					<BootstrapTable { ...props.baseProps } pagination={paginationFactory()}/>
+				<div>
+					
+					<BootstrapTable bootStrap4={true} wrapperClasses="container table-responsive" classes="table-responsive" { ...props.baseProps } pagination={paginationFactory()}/>
+				</div>
 				</div>
 				)
 			}

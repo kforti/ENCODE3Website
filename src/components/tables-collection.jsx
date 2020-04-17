@@ -18,7 +18,6 @@ const Tab = ({ children }) => (
 
 
 const Pagination = ({ items, active, onClick }) => {
-	console.log(items)
     return(
 		<nav aria-label="Page navigation example">
 		<ul class="pagination">
@@ -34,10 +33,8 @@ const Pagination = ({ items, active, onClick }) => {
 
 export const TablesCollection = ({table_pages, initial_page}) => {
 	const [activePage, setActivePage] = useState(initial_page);
-	console.log(table_pages)
 	
 	const onTableClick = (page) =>{
-		console.log(page)
 		setActivePage(page)
 	}
 

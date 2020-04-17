@@ -29,7 +29,6 @@ function App() {
           </Route>
           <Route  path="/figure/:id" component={StaticFigure}/>
           <Route  path="/tables/:table" render={({ match, location }) => {
-                console.log(match.params.table)
                 let page = match.params.table ? match.params.table : "extended_data_table_1"
                 return(
                 <TablesCollection table_pages={TABLE_PAGES} initial_page={TABLE_PAGES[page]}/>

@@ -20,6 +20,7 @@ export const TablePage = ({page}) => {
 
     useEffect(() => {
         
+        //aspgjff15a.execute-api.us-east-2.amazonaws.com/beta
         axios.get('https://aspgjff15a.execute-api.us-east-2.amazonaws.com/beta/tables', {
 		params: {
 		  id: page.tables
@@ -29,7 +30,7 @@ export const TablePage = ({page}) => {
          },
 	  })
 	  .then(function (response) {
-          console.log(response.data)
+        //   console.log(response.data)
         if(response.data){
             setTables(response.data)
         }
@@ -46,7 +47,7 @@ export const TablePage = ({page}) => {
     return(
         <div className="tab-content">
             <div id="tabhuman" className={"tab-pane " + (activeTab ? "" : "active")}>
-                <TableTab tables={tables}/>
+                <TableTab page_id={page.page_id} tables={tables}/>
             </div>
             <div id="tabmouse" className={"tab-pane " + (activeTab ? "active" : "")}>
                 
