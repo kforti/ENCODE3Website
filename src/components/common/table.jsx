@@ -11,7 +11,6 @@ const { SearchBar } = Search;
 
 const axios = require('axios');
 var qs = require('qs');
-const clonedeep = require('lodash.clonedeep');
 
 function Table(id='', num_records='all', remote=false, data=[], columns=[], title='', keyField='', fileName='', s3_object='') {
 	this.id = id
