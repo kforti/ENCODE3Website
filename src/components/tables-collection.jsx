@@ -1,8 +1,18 @@
 import React from 'react';
 import { useState } from 'react';
 
-import { TablePage } from './table-page';
+import { TableContainer } from './common/table';
 
+const REMOTE_TABLES = [
+	"supplementary_table_11",
+	"supplementary_table_10",
+	"supplementary_table_13d",
+	"supplementary_table_13d", 
+	"supplementary_table_13e", 
+	"supplementary_table_13f", 
+	"supplementary_table_13h", 
+	"supplementary_table_13i", 
+	"supplementary_table_13j"]
 
 const Tab = ({ children }) => (
     <div>
@@ -37,7 +47,6 @@ export const TablesCollection = ({table_pages, initial_page}) => {
 	const onTableClick = (page) =>{
 		setActivePage(page)
 	}
-
 	return(
 		<Tab>
 	      <div className="row">
@@ -49,12 +58,17 @@ export const TablesCollection = ({table_pages, initial_page}) => {
 	          <div className="alert alert-info" style={{fontSize: "16pt"}}>
 	              <span className="glyphicon glyphicon-info-sign" style={{marginRight: "10px"}}></span>These tables are interactive. Click the column headers to sort, use the textboxes to search, and click the CSV buttons to download the table contents in CSV format.
 	          </div>
-	          {activePage !== 6 ? null : (
-	            <div className="alert alert-info" style={{fontSize: "16pt"}}>
-	              <span className="glyphicon glyphicon-info-sign" style={{marginRight: "10px"}}></span>The colors in this table correspond to the bar colors in <b>Extended Data Figure 9</b>.
-	            </div>
-		  )}
-			<div><h2>{activePage.title}</h2><TablePage page={activePage}/></div>
+	          
+			<div><h2>{activePage.title}</h2>
+				{activePage.tables.map((id) => (
+					<TableContainer 
+					id={id}
+					// remove redundancy
+					num_records={REMOTE_TABLES.includes(id) ? '1000': 'all'}
+					remote={REMOTE_TABLES.includes(id) ? true: false}
+					/>
+				))}
+			</div>
 	          
 	        </div>
 	      </div>	      

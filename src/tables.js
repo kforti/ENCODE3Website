@@ -38,7 +38,7 @@ export const TABLE_PAGES = {
     supplementary_table_12: {tables: [ "supplementary_table_12a", "supplementary_table_12b"],
                             nav_slug: "S12",
                             page_id: "supplementary_table_12"},
-    supplementary_table_13: {tables: ["supplementary_table_13a", "supplementary_table_13b","supplementary_table_13c"],//"supplementary_table_13d","supplementary_table_13e","supplementary_table_13f","supplementary_table_13g","supplementary_table_13h","supplementary_table_13i","supplementary_table_13j","supplementary_table_13k", "supplementary_table_13l"],
+    supplementary_table_13: {tables: ["supplementary_table_13a", "supplementary_table_13b","supplementary_table_13c", "supplementary_table_13d","supplementary_table_13e","supplementary_table_13f","supplementary_table_13g","supplementary_table_13h","supplementary_table_13i","supplementary_table_13j","supplementary_table_13k", "supplementary_table_13l"],
                             nav_slug: "S13",
                             page_id: "supplementary_table_13"},
     supplementary_table_14: {tables: ["supplementary_table_14"],
