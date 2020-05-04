@@ -21,7 +21,7 @@ export const CollectionCard= ({figure}) => {
                 <Divider/>
                 <Card.Header>{figure.name}</Card.Header>
                 <Card.Description>
-                    
+                    {figure.caption.substring(0, 100)}...
                 </Card.Description>
                 </Card.Content>
         </Card>

@@ -66,7 +66,7 @@ export const TableContainer = ({ id, num_records, remote }) => {
 					  }
 					return item
 				})
-
+				preProcessTable(new_table)
 				setActiveTable(new_table)
 			}
 		})
@@ -77,7 +77,19 @@ export const TableContainer = ({ id, num_records, remote }) => {
 			// always executed
 		});
 	}
-
+	const preProcessTable = (new_table) => {
+		new_table.data = new_table.data.map((item) => {
+			for (var key of Object.keys(item)) {
+				item[key] = item[key].toLocaleString('en-us')
+			}
+			return item
+		})
+		new_table.columns = new_table.columns.map((item) => {
+			item.sort = true;
+			item.sortFunc = sortFunc
+			return item
+		})
+	}
 	const sortFunc = (a, b, order, dataField, rowA, rowB) => {
 		a = parseFloat(a) && typeof a === 'string' ? parseFloat(a.replace(/[,]/g, '')) : a
 		b = parseFloat(b) && typeof b === 'string' ? parseFloat(b.replace(/[,]/g, '')) : b
