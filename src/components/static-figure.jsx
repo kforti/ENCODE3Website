@@ -15,7 +15,8 @@ export const StaticFigure = (props) => {
 
     return(
         <Container>
-            <Image src={S3_BASE_URL + props.location.figureProps.figure.imgsrc} size='massive'></Image>
+            {props.location.figureProps.figure.ftype === "svg" && <object data={S3_BASE_URL + props.location.figureProps.figure.imgsrc} className="ui massive image" type="image/svg+xml"/>}
+            {props.location.figureProps.figure.ftype === "png" && <Image src={S3_BASE_URL + props.location.figureProps.figure.imgsrc} size='massive'></Image> }
             <hr/>
                 <h3 style={{fontWeight: "bold"}}> {figure.name.includes("Main") ? figure.name.replace("Main-", "").split("-").join(" "): figure.name.split("-").join(" ")} | {figure.title}</h3>
             <p> { ReactHtmlParser(htmlDecode(figure.caption)) } </p>
