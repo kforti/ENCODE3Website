@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -12,7 +12,51 @@ import { StaticFigure } from './components/static-figure';
 import { TablesCollection } from './components/tables-collection'
 import { TABLE_PAGES } from './tables';
 
+const axios = require('axios');
+var qs = require('qs');
+
+const get_figure_collection = (id, setState) => {
+  axios.get('https://aspgjff15a.execute-api.us-east-2.amazonaws.com/beta/figure-collection', {
+			params: {
+			id: id
+			},
+			paramsSerializer: (params) => {
+				return qs.stringify(params, {arrayFormat: 'repeat'})
+			},
+		})
+		.then(function (response) {
+			console.log(response.data)
+			if(response.data){
+				setState(Object.entries(response.data[id]).map((figure, index) => {
+          console.log(figure[1])
+          return figure[1]
+        }))
+			}
+		})
+		.catch(function (error) {
+			console.log(error);
+		})
+		.finally(function () {
+			// always executed
+		});
+	}
+
+
+const FIGURE_COLLECTIONS = ["main-extended-figures", "supplemental-figures"]
+
 function App() {
+  const [mainExtendedFigures, setMainFigures] = useState([]);
+  const [supplementalFigures, setSupplementalFigures] = useState([]);
+
+  useEffect(() => {
+    get_figure_collection("main-extended-figures", setMainFigures)
+    get_figure_collection("supplemental-figures", setSupplementalFigures)
+    
+    return () => {
+      console.log("done")
+    }
+  }, [])
+
   return (
     <Router>
       <NavBar/>
@@ -22,10 +66,10 @@ function App() {
               <HomePage></HomePage>
           </Route>
           <Route  path="/main-figures">
-            <FiguresCollection figures={main_extended_figs}/>
+            <FiguresCollection figures={mainExtendedFigures}/>
           </Route>
           <Route  path="/supplemental-figures">
-            <FiguresCollection figures={supplemental_figs}/>
+            <FiguresCollection figures={supplementalFigures}/>
           </Route>
           <Route  path="/figure/:id" component={StaticFigure}/>
           <Route  path="/tables/:table" render={({ match, location }) => {

@@ -3,8 +3,15 @@ import React from 'react';
 import { Card, Image, Divider } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import extended_data_figure_3 from '../figures/main/Extended-Data-Figure-3.png';
+import ReactHtmlParser from 'react-html-parser'; 
 
 
+const S3_BASE_URL = "https://encode3-companion.s3.us-east-2.amazonaws.com/";
+
+function htmlDecode(input) {
+    var doc = new DOMParser().parseFromString(input, "text/html");
+    return doc.documentElement.textContent;
+  }
 
 export const CollectionCard= ({figure}) => {
     return (
@@ -16,12 +23,12 @@ export const CollectionCard= ({figure}) => {
                         figure: figure
                         }
                     }}  className="nav-item nav-link">
-                    <Image size='medium' src={figure.imgsrc} wrapped fluid={false} centered/>
+                    <Image size='medium' src={S3_BASE_URL + figure.thumbnail_url} wrapped fluid={false} centered/>
                 </Link>
                 <Divider/>
-                <Card.Header>{figure.name}</Card.Header>
+                <Card.Header>{figure.name.includes("Main") ? figure.name.replace("Main-", "").split("-").join(" "): figure.name.split("-").join(" ")} | {figure.title}</Card.Header>
                 <Card.Description>
-                    {figure.caption.substring(0, 100)}...
+                    {ReactHtmlParser(htmlDecode(figure.caption).substring(0, 200))}...
                 </Card.Description>
                 </Card.Content>
         </Card>

@@ -4,8 +4,8 @@ import {CollectionCard} from './collection-card';
 import { Container, Card } from 'semantic-ui-react';
 
 
-
 export const FiguresCollection = ({figures, row_size=3}) => {
+    console.log(figures)
     const [rows, setRows] = useState([])
 
     useEffect(() => {
@@ -36,8 +36,6 @@ export const FiguresCollection = ({figures, row_size=3}) => {
         }
         return structured_rows
     }
-
-
     return (
         <Container>
             {rows}
