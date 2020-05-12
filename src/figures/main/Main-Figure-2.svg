@@ -368,7 +368,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.83313656px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue'">ENCODE Encyclopedia </tspan></text>
     
     
-    <a href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_slims=DNA+accessibility&amp;assay_title=DNase-seq&amp;award.project=ENCODE&amp;award.project=Roadmap&amp;files.file_type=bed+broadPeak&amp;files.file_type=bigBed+narrowPeak&amp;files.file_type=bed+narrowPeak&amp;files.file_type=bigBed+broadPeak">
+    <a target="_blank" href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_slims=DNA+accessibility&amp;assay_title=DNase-seq&amp;award.project=ENCODE&amp;award.project=Roadmap&amp;files.file_type=bed+broadPeak&amp;files.file_type=bigBed+narrowPeak&amp;files.file_type=bed+narrowPeak&amp;files.file_type=bigBed+broadPeak">
     <rect
        style="opacity:1;fill:#ff917d;fill-opacity:0.76433123;stroke:#000000;stroke-width:0.45246494;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5548"
@@ -400,7 +400,7 @@
          id="tspan4965"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.55542469px;line-height:110.00000238%;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';text-align:center;text-anchor:middle;fill:#000000">(DHSs)</tspan></text>
       </a>
-    <a href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_slims=DNA+accessibility&amp;assay_title=DNase-seq&amp;assay_title=ATAC-seq&amp;award.project=ENCODE&amp;award.project=Roadmap&amp;files.file_type=bed+broadPeak&amp;files.file_type=bigBed+narrowPeak&amp;files.file_type=bed+narrowPeak&amp;files.file_type=bigBed+broadPeak">
+    <a target="_blank" href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_slims=DNA+accessibility&amp;assay_title=DNase-seq&amp;assay_title=ATAC-seq&amp;award.project=ENCODE&amp;award.project=Roadmap&amp;files.file_type=bed+broadPeak&amp;files.file_type=bigBed+narrowPeak&amp;files.file_type=bed+narrowPeak&amp;files.file_type=bigBed+broadPeak">
     <rect
        style="opacity:1;fill:url(#linearGradient6247);fill-opacity:1;stroke:none;stroke-width:0.69819021;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5821-5"
@@ -467,7 +467,7 @@
          y="65.208862"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.64799547px;line-height:110.00000238%;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';text-align:center;text-anchor:middle;fill:#000000"
          id="tspan8280">data types</tspan></text>
-   <a href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_title=ChIA-PET&amp;replicates.library.biosample.donor.organism.scientific_name=Homo+sapiens&amp;award.project=ENCODE">
+   <a target="_blank" href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_title=ChIA-PET&amp;replicates.library.biosample.donor.organism.scientific_name=Homo+sapiens&amp;award.project=ENCODE">
     <rect
        style="opacity:1;fill:#ff917d;fill-opacity:0.76433123;stroke:#000000;stroke-width:0.45246783;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5548-86"
@@ -498,7 +498,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.55542469px;line-height:110.00000238%;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';text-align:center;text-anchor:middle"
          id="tspan5666">(interactions)</tspan></text>
    </a>
-    <a href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_slims=Transcription&amp;status=released&amp;award.project=ENCODE&amp;award.project=Roadmap">
+    <a target="_blank" href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_slims=Transcription&amp;status=released&amp;award.project=ENCODE&amp;award.project=Roadmap">
     <rect
        style="opacity:1;fill:#ff917d;fill-opacity:0.76433123;stroke:#000000;stroke-width:0.45246667;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5548-05"
@@ -534,7 +534,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.55542469px;line-height:110.00000238%;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';text-align:center;text-anchor:middle"
          id="tspan8710">(levels)</tspan></text>
    </a>
-   <a href="https://www.encodeproject.org/search/?type=Experiment&amp;replicates.library.biosample.donor.organism.scientific_name=Homo+sapiens&amp;award.project=ENCODE&amp;assay_title=RAMPAGE">
+   <a target="_blank" href="https://www.encodeproject.org/search/?type=Experiment&amp;replicates.library.biosample.donor.organism.scientific_name=Homo+sapiens&amp;award.project=ENCODE&amp;assay_title=RAMPAGE">
     <rect
        style="opacity:1;fill:#ff917d;fill-opacity:0.76433123;stroke:#000000;stroke-width:0.45246714;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5548-04"
@@ -565,7 +565,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.55542469px;line-height:110.00000238%;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';text-align:center;text-anchor:middle"
          id="tspan37485">(TSS activity)</tspan></text>
    </a>
-    <a href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_slims=DNA+binding&amp;target.investigated_as=transcription+factor&amp;award.project=ENCODE&amp;assay_title=TF+ChIP-seq">
+    <a target="_blank" href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_slims=DNA+binding&amp;target.investigated_as=transcription+factor&amp;award.project=ENCODE&amp;assay_title=TF+ChIP-seq">
     <rect
        style="opacity:1;fill:#ff917d;fill-opacity:0.76433123;stroke:#000000;stroke-width:0.45246604;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5548-8"
@@ -596,7 +596,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.55542469px;line-height:110.00000238%;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';text-align:center;text-anchor:middle"
          id="tspan5680">(peaks, motifs)</tspan></text>
    </a>
-   <a href="https://www.encodeproject.org/search/?type=Experiment&amp;status=released&amp;assay_slims=DNA+methylation&amp;award.project=ENCODE&amp;award.project=Roadmap">
+   <a target="_blank" href="https://www.encodeproject.org/search/?type=Experiment&amp;status=released&amp;assay_slims=DNA+methylation&amp;award.project=ENCODE&amp;award.project=Roadmap">
     <rect
        style="opacity:1;fill:#ff917d;fill-opacity:0.76433123;stroke:#000000;stroke-width:0.45246735;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5548-6"
@@ -632,7 +632,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.55542469px;line-height:110.00000238%;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';text-align:center;text-anchor:middle"
          id="tspan8708">(levels)</tspan></text>
    </a>
-    <a href="https://www.encodeproject.org/search/?type=Experiment&amp;award.project=ENCODE&amp;award.project=Roadmap&amp;target.investigated_as=histone&amp;assay_title=Histone+ChIP-seq">
+    <a target="_blank" href="https://www.encodeproject.org/search/?type=Experiment&amp;award.project=ENCODE&amp;award.project=Roadmap&amp;target.investigated_as=histone&amp;assay_title=Histone+ChIP-seq">
     <rect
        style="opacity:1;fill:#ff917d;fill-opacity:0.76433123;stroke:#000000;stroke-width:0.45246542;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5548-0"
@@ -668,7 +668,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.55542469px;line-height:110.00000238%;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';text-align:center;text-anchor:middle"
          id="tspan5690">(peaks)</tspan></text>
    </a>
-   <a href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_slims=RNA+binding&amp;assay_title=eCLIP&amp;assay_title=RNA+Bind-n-Seq&amp;assay_title=RIP-seq&amp;assay_title=RIP-chip&amp;assay_title=iCLIP&amp;assembly=GRCh38&amp;assembly=hg19&amp;award.project=ENCODE">
+   <a target="_blank" href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_slims=RNA+binding&amp;assay_title=eCLIP&amp;assay_title=RNA+Bind-n-Seq&amp;assay_title=RIP-seq&amp;assay_title=RIP-chip&amp;assay_title=iCLIP&amp;assembly=GRCh38&amp;assembly=hg19&amp;award.project=ENCODE">
    <rect
        style="opacity:1;fill:#ff917d;fill-opacity:0.76433123;stroke:#000000;stroke-width:0.45246777;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5548-85"
@@ -714,7 +714,7 @@
        ry="0"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
-   <a href="https://www.encodeproject.org/search/?type=Annotation&amp;annotation_type=chromatin+state">
+   <a target="_blank" href="https://www.encodeproject.org/search/?type=Annotation&amp;annotation_type=chromatin+state">
     <rect
        style="opacity:.99;fill:#9bd2f1;fill-opacity:0.66470588;stroke:#000000;stroke-width:0.51610816;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5548-2"
@@ -766,7 +766,7 @@
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
 
-    <a href="http://screen.umassmed.edu/">
+    <a target="_blank" href="http://screen.umassmed.edu/">
     <rect
        style="opacity:.99;fill:none;fill-opacity:1;stroke:#a5d87c;stroke-width:2.12851334;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;pointer-events: bounding-box;"
        id="rect6333"
@@ -939,7 +939,7 @@
        ry="1.7695369"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
-    <a href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_slims=3D+chromatin+structure&amp;assay_title=Hi-C">
+    <a target="_blank" href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_slims=3D+chromatin+structure&amp;assay_title=Hi-C">
     <rect
        style="opacity:1;fill:#ff917d;fill-opacity:0.76433123;stroke:#000000;stroke-width:0.45246845;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5548-1"
@@ -989,7 +989,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.55542469px;line-height:110.00000238%;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';text-align:center;text-anchor:middle"
          id="tspan5662">compartments)</tspan></text>
    </a>
-    <a href="https://jjem0808.wixsite.com/test-encode/variant-annotation-tools">
+    <a target="_blank" href="https://jjem0808.wixsite.com/test-encode/variant-annotation-tools">
      <rect
        style="opacity:1;fill:#9ad2f0;fill-opacity:0.66666667;stroke:#000000;stroke-width:0.51610929;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5548-3"
@@ -1161,7 +1161,7 @@
        ry="4.4397168"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
-    <a href="https://www.encodeproject.org/">
+    <a target="_blank" href="https://www.encodeproject.org/">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.52384567px;line-height:125%;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -1178,7 +1178,7 @@
          y="8.1610069"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.74056625px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue'">ENCODE portal</tspan></text>
    </a>
-    <a href="http://screen.encodeproject.org/">
+    <a target="_blank" href="http://screen.encodeproject.org/">
       <image
        y="818.81311"
        x="372.41531"
@@ -1275,7 +1275,7 @@
        inkscape:connector-curvature="0"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
-   <a href="https://www.encodeproject.org/pipelines/">
+   <a target="_blank" href="https://www.encodeproject.org/pipelines/">
    <rect
        style="opacity:1;fill:#d198ff;fill-opacity:1;stroke:none;stroke-width:8;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect117398"
@@ -1384,7 +1384,7 @@
        width="250"
        clip-path="url(#clipPath4465)"
        transform="matrix(0.12713551,0,0,0.12713551,256.84365,827.8408)" />
-   <a href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_slims=DNA+accessibility&amp;assay_title=ATAC-seq&amp;award.project=ENCODE&amp;award.project=Roadmap&amp;files.file_type=bed+broadPeak&amp;files.file_type=bigBed+narrowPeak&amp;files.file_type=bed+narrowPeak&amp;files.file_type=bigBed+broadPeak">
+   <a target="_blank" href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_slims=DNA+accessibility&amp;assay_title=ATAC-seq&amp;award.project=ENCODE&amp;award.project=Roadmap&amp;files.file_type=bed+broadPeak&amp;files.file_type=bigBed+narrowPeak&amp;files.file_type=bed+narrowPeak&amp;files.file_type=bigBed+broadPeak">
     <rect
        style="opacity:1;fill:#ff917d;fill-opacity:0.76433123;stroke:#000000;stroke-width:0.45246714;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5548-04-8"
