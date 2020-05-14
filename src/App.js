@@ -47,6 +47,7 @@ const FIGURE_COLLECTIONS = ["main-extended-figures", "supplemental-figures"]
 function App() {
   const [mainExtendedFigures, setMainFigures] = useState([]);
   const [supplementalFigures, setSupplementalFigures] = useState([]);
+  axios.get('https://aspgjff15a.execute-api.us-east-2.amazonaws.com/beta/table')
 
   useEffect(() => {
     get_figure_collection("main-extended-figures", setMainFigures)
@@ -75,7 +76,7 @@ function App() {
           <Route  path="/tables/:table" render={({ match, location }) => {
                 let page = match.params.table ? match.params.table : "extended_data_table_1"
                 return(
-                <TablesCollection table_pages={TABLE_PAGES} initial_page={TABLE_PAGES[page]}/>
+                  <TablesCollection table_pages={TABLE_PAGES} initial_page={TABLE_PAGES[page]}/>
                 )
             }}>
           </Route>
