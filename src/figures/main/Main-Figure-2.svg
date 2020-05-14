@@ -400,7 +400,7 @@
          id="tspan4965"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.55542469px;line-height:110.00000238%;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';text-align:center;text-anchor:middle;fill:#000000">(DHSs)</tspan></text>
       </a>
-    <a target="_blank" href="https://www.encodeproject.org/search/?type=Experiment&amp;assay_slims=DNA+accessibility&amp;assay_title=DNase-seq&amp;assay_title=ATAC-seq&amp;award.project=ENCODE&amp;award.project=Roadmap&amp;files.file_type=bed+broadPeak&amp;files.file_type=bigBed+narrowPeak&amp;files.file_type=bed+narrowPeak&amp;files.file_type=bigBed+broadPeak">
+   
     <rect
        style="opacity:1;fill:url(#linearGradient6247);fill-opacity:1;stroke:none;stroke-width:0.69819021;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5821-5"
@@ -441,7 +441,7 @@
          y="103.45886"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.65480614px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';text-align:center;text-anchor:middle;fill:#000000"
          id="tspan8284" /></text>
-      </a>
+   
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.52384567px;line-height:110.00000238%;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"

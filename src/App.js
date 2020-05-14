@@ -8,6 +8,7 @@ import { supplemental_figs } from './figures/objs/supplemental-figs';
 import { HomePage } from './components/home';
 import { NavBar } from './components/navbar';
 import { FiguresCollection } from './components/figures-collection';
+import { NewFiguresCollection } from './components/figures-collection-new';
 import { StaticFigure } from './components/static-figure';
 import { TablesCollection } from './components/tables-collection'
 import { TABLE_PAGES } from './tables';
@@ -28,7 +29,6 @@ const get_figure_collection = (id, setState) => {
 			console.log(response.data)
 			if(response.data){
 				setState(Object.entries(response.data[id]).map((figure, index) => {
-          console.log(figure[1])
           return figure[1]
         }))
 			}
@@ -64,7 +64,7 @@ function App() {
       <Switch>
           <Route exact path="/">
               <HomePage></HomePage>
-          </Route>
+             </Route>
           <Route  path="/main-figures">
             <FiguresCollection figures={mainExtendedFigures}/>
           </Route>
