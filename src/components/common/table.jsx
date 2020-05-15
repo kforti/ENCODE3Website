@@ -27,11 +27,14 @@ function Table(id='', num_records='all', remote=false, data=[], columns=[], titl
 
 export const TableContainer = ({ id, num_records, remote }) => {
 	const [ activeTable, setActiveTable ] = useState(new Table(id, num_records, remote));
+	const [loaded, setLoaded] = useState(false);
 	console.log(activeTable)
 	useEffect(() => {
 		if(!id){
 			return
 		}
+		setLoaded(false);
+		setActiveTable(new Table(id, num_records, remote));
 		fetchTableData(id, remote, num_records)
     }, [id])
 
@@ -66,8 +69,9 @@ export const TableContainer = ({ id, num_records, remote }) => {
 					  }
 					return item
 				})
-				preProcessTable(new_table)
-				setActiveTable(new_table)
+				preProcessTable(new_table);
+				setLoaded(true);
+				setActiveTable(new_table);
 			}
 		})
 		.catch(function (error) {
@@ -115,6 +119,17 @@ export const TableContainer = ({ id, num_records, remote }) => {
 
     return(
     <div>
+
+		{!loaded && (
+			<div>
+				<div className="ui segment">
+					<div className="ui active medium dimmer">
+						<div className="ui text medium loader">Loading</div>
+					</div>
+					<p></p>
+				</div>
+			</div>
+		)}
 		{activeTable && activeTable.data.length > 0 && (
 		<div>
 		 <h3>{activeTable.title}</h3>
@@ -129,9 +144,7 @@ export const TableContainer = ({ id, num_records, remote }) => {
 					{ activeTable.remote &&
 						<div>
 							<ExportCSVButton className="btn-primary" onClick={downloadRemoteCSV} { ...props.csvProps } >Export CSV</ExportCSVButton>					
-					
 					<div>
-					
 						<BootstrapTable bootStrap4={true}
 						remote={ { sort: activeTable.remote } } 
 						wrapperClasses="container table-responsive" 
@@ -139,8 +152,6 @@ export const TableContainer = ({ id, num_records, remote }) => {
 						pagination={paginationFactory()} 
 						onTableChange={onTableChange}
 					/>
-
-						
 					</div>
 					</div>
 					}
