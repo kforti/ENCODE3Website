@@ -5,6 +5,7 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 import * as Icon from 'react-bootstrap-icons';
+import {Spinner, Row, Col} from 'react-bootstrap';
 
 const { ExportCSVButton } = CSVExport;
 const { SearchBar } = Search;
@@ -71,6 +72,7 @@ export const TableContainer = ({ id, num_records, remote }) => {
 				})
 				preProcessTable(new_table);
 				setLoaded(true);
+				console.log(new_table)
 				setActiveTable(new_table);
 			}
 		})
@@ -95,9 +97,19 @@ export const TableContainer = ({ id, num_records, remote }) => {
 		})
 	}
 	const sortFunc = (a, b, order, dataField, rowA, rowB) => {
-		a = parseFloat(a) && typeof a === 'string' ? parseFloat(a.replace(/[,]/g, '')) : a
-		b = parseFloat(b) && typeof b === 'string' ? parseFloat(b.replace(/[,]/g, '')) : b
+		console.log("entry")
+		console.log(b)
+		console.log(a)
+		if(a == "0"){ a = "0.0"}
+		a = typeof a === 'string' ? parseFloat(a.replace(/[,]/g, '')) : a
+		b = typeof b === 'string' ? parseFloat(b.replace(/[,]/g, '')) : b
+		console.log("transformed")
+		console.log(b)
+		console.log(a)
 		if(typeof a === 'string') {
+			console.log("assess")
+			console.log(b)
+			console.log(a)
 		   if (order === 'asc') return a.localeCompare(b);
 		   else return b.localeCompare(a);
 		}
@@ -121,14 +133,15 @@ export const TableContainer = ({ id, num_records, remote }) => {
     <div>
 
 		{!loaded && (
-			<div>
-				<div className="ui segment">
-					<div className="ui active medium dimmer">
-						<div className="ui text medium loader">Loading</div>
-					</div>
-					<p></p>
-				</div>
-			</div>
+			<Row className="show-grid" float="center">
+				<Col xs={12} xsOffset={6}>
+					<Spinner animation="border" role="status">
+						<span className="sr-only">Loading...</span>
+					</Spinner>
+					<hr />
+				</Col>
+			</Row>
+			
 		)}
 		{activeTable && activeTable.data.length > 0 && (
 		<div>
