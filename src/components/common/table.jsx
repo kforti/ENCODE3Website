@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import ToolkitProvider, { CSVExport, Search } from 'react-bootstrap-table2-toolkit';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
+import overlayFactory from 'react-bootstrap-table2-overlay';
 
 import * as Icon from 'react-bootstrap-icons';
 import {Spinner, Row, Col} from 'react-bootstrap';
@@ -29,11 +30,13 @@ function Table(id='', num_records='all', remote=false, data=[], columns=[], titl
 export const TableContainer = ({ id, num_records, remote }) => {
 	const [ activeTable, setActiveTable ] = useState(new Table(id, num_records, remote));
 	const [loaded, setLoaded] = useState(false);
+	const [sorting, setSorting] = useState(false);
 	console.log(activeTable)
 	useEffect(() => {
 		if(!id){
 			return
 		}
+		console.log("EFFECT")
 		setLoaded(false);
 		setActiveTable(new Table(id, num_records, remote));
 		fetchTableData(id, remote, num_records)
@@ -64,8 +67,8 @@ export const TableContainer = ({ id, num_records, remote }) => {
 					item.sortFunc = sortFunc
 					item.sortCaret = (order, column) => {
 						if (!order) return (<div><Icon.CaretDown/><Icon.CaretUp/></div>);
-						else if (order === 'asc') return (<span><Icon.CaretUpFill/></span>);
-						else if (order === 'desc') return (<span><Icon.CaretDownFill/></span>);
+						else if (order === 'asc') return (<div><Icon.CaretDownFill/><Icon.CaretUp/></div>);
+						else if (order === 'desc') return (<div><Icon.CaretDown/><Icon.CaretUpFill/></div>);
 						return null;
 					  }
 					return item
@@ -84,44 +87,60 @@ export const TableContainer = ({ id, num_records, remote }) => {
 		});
 	}
 	const preProcessTable = (new_table) => {
-		new_table.data = new_table.data.map((item) => {
-			for (var key of Object.keys(item)) {
-				item[key] = item[key].toLocaleString('en-us')
-			}
-			return item
-		})
+		if (!new_table.id.includes("supplementary_table_23")){
+			new_table.data = new_table.data.map((item) => {
+				for (var key of Object.keys(item)) {
+					item[key] = item[key].toLocaleString('en-us')
+				}
+				return item
+			})
+		}
 		new_table.columns = new_table.columns.map((item) => {
 			item.sort = true;
 			item.sortFunc = sortFunc
+			item.headerStyle = {backgroundColor: "#d0e0f1", border: "0.5px solid #00000073"}
 			return item
 		})
 	}
+	console.log(loaded)
 	const sortFunc = (a, b, order, dataField, rowA, rowB) => {
+		setSorting(true);
 		console.log("entry")
 		console.log(b)
 		console.log(a)
-		if(a == "0"){ a = "0.0"}
-		a = typeof a === 'string' ? parseFloat(a.replace(/[,]/g, '')) : a
-		b = typeof b === 'string' ? parseFloat(b.replace(/[,]/g, '')) : b
-		console.log("transformed")
-		console.log(b)
-		console.log(a)
+		// if(a == "0"){ a = "0.0"}
+		if(parseFloat(a) && parseFloat(b)){
+			a = typeof a === 'string' ? parseFloat(a.replace(/[,]/g, '')) : a
+			b = typeof b === 'string' ? parseFloat(b.replace(/[,]/g, '')) : b
+			console.log("transformed")
+			console.log(b)
+			console.log(a)
+		}
 		if(typeof a === 'string') {
 			console.log("assess")
 			console.log(b)
 			console.log(a)
 		   if (order === 'asc') return a.localeCompare(b);
-		   else return b.localeCompare(a);
+		   else {
+			   setSorting(false);
+			   return b.localeCompare(a);
+		   }
 		}
 		
 		if (order === 'asc') return a - b;
-	   else return b - a;
+	   else {
+		setSorting(false)   
+		return b - a;
+	   }
+	   setSorting(false)
    }
 
    const onTableChange = (type, { sortField, sortOrder, data }) => {
+	   setLoaded(false);
 	setTimeout(() => {
 		fetchTableData(activeTable.id, activeTable.remote, activeTable.num_records, sortField, sortOrder)
 	  }, 2000);
+	  
    }
 
    const downloadRemoteCSV = () => {
@@ -143,9 +162,11 @@ export const TableContainer = ({ id, num_records, remote }) => {
 			</Row>
 			
 		)}
+		
 		{activeTable && activeTable.data.length > 0 && (
 		<div>
 		 <h3>{activeTable.title}</h3>
+	
 		 <ToolkitProvider
 			 keyField= 'field0' data={ activeTable.data } columns={ activeTable.columns }
 			 exportCSV= {{fileName: activeTable.fileName}}
@@ -156,7 +177,9 @@ export const TableContainer = ({ id, num_records, remote }) => {
 					 <div>
 					{ activeTable.remote &&
 						<div>
-							<ExportCSVButton className="btn-primary" onClick={downloadRemoteCSV} { ...props.csvProps } >Export CSV</ExportCSVButton>					
+							<a href={`https://encode3-companion.s3.us-east-2.amazonaws.com/${activeTable.s3_object}`} target='_blank' download={`${activeTable.id}.csv`}>
+								<ExportCSVButton className="btn-primary" onClick={downloadRemoteCSV} { ...props.csvProps } >Export CSV</ExportCSVButton>					
+							</a>
 					<div>
 						<BootstrapTable bootStrap4={true}
 						remote={ { sort: activeTable.remote } } 
@@ -164,13 +187,17 @@ export const TableContainer = ({ id, num_records, remote }) => {
 						classes="table-responsive" { ...props.baseProps } 
 						pagination={paginationFactory()} 
 						onTableChange={onTableChange}
+						overlay={ overlayFactory({ spinner: true, background: 'rgba(192,192,192,0.3)' }) }
+						loading={!loaded}
 					/>
 					</div>
 					</div>
 					}
 					{ !activeTable.remote &&
 						<div>
-							<ExportCSVButton className="btn-primary" { ...props.csvProps } >Export CSV</ExportCSVButton>					
+							<a href={`https://encode3-companion.s3.us-east-2.amazonaws.com/${activeTable.s3_object}`} target='_blank' download={`${activeTable.id}.csv`}>
+								<ExportCSVButton className="btn-primary" { ...props.csvProps } >Export CSV</ExportCSVButton>
+							</a>					
 					 <SearchBar { ...props.searchProps } style={{marginLeft: '20px'}}/>
 					<div>
 					
@@ -178,6 +205,8 @@ export const TableContainer = ({ id, num_records, remote }) => {
 						wrapperClasses="container table-responsive" 
 						classes="table-responsive" { ...props.baseProps } 
 						pagination={paginationFactory()} 
+						overlay={ overlayFactory({ spinner: true, background: 'rgba(192,192,192,0.3)' }) }
+						loading={!loaded}
 					/>
 
 						

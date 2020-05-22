@@ -16,20 +16,21 @@ function htmlDecode(input) {
 
 export const CollectionCard= ({figure}) => {
     const [isLoaded, setIsLoaded] = useState(false);
-  
+   
     const onImageLoad = () => {
         setIsLoaded(true)
     }
-  
+    const collection = figure.id.includes("supplementary") ? "supplemental-figures" : "main-extended-figures";
+    console.log(figure)
     return (
         <Card>
             <Card.Content>
             
                 <Link to={{
-                    pathname: "/figure/"+figure.id,
-                    figureProps:{
-                        figure: figure
-                        }
+                    pathname: `/${collection}/`+figure.name,
+                    // figureProps:{
+                    //     figure: figure
+                    //     }
                     }}  className="nav-item nav-link">
                     <div style={{display: !isLoaded ? "block" : "none"}}>
                         <div className="ui segment">
@@ -39,7 +40,7 @@ export const CollectionCard= ({figure}) => {
                             <p></p>
                         </div>
                     </div>
-                    <Image onLoad={onImageLoad} style={{display: isLoaded ? "block" : "none"}} size='medium' src={S3_BASE_URL + figure.thumbnail_url} wrapped fluid={false} centered/>
+                    <Image onLoad={onImageLoad} style={{display: isLoaded ? "block" : "none"}} size='big' src={S3_BASE_URL + figure.thumbnail_url} wrapped fluid={false} centered/>
                 </Link>
                 <Divider/>
                 <Card.Header>{figure.name.includes("Main") ? figure.name.replace("Main-", "").split("-").join(" "): figure.name.split("-").join(" ")} | {figure.title}</Card.Header>

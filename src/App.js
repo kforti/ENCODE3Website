@@ -12,6 +12,7 @@ import { NewFiguresCollection } from './components/figures-collection-new';
 import { StaticFigure } from './components/static-figure';
 import { TablesCollection } from './components/tables-collection'
 import { TABLE_PAGES } from './tables';
+import { ToolsPage } from './components/tools-page';
 
 const axios = require('axios');
 var qs = require('qs');
@@ -28,9 +29,7 @@ const get_figure_collection = (id, setState) => {
 		.then(function (response) {
 			console.log(response.data)
 			if(response.data){
-				setState(Object.entries(response.data[id]).map((figure, index) => {
-          return figure[1]
-        }))
+				setState(response.data[id])
 			}
 		})
 		.catch(function (error) {
@@ -45,7 +44,7 @@ const get_figure_collection = (id, setState) => {
 const FIGURE_COLLECTIONS = ["main-extended-figures", "supplemental-figures"]
 
 function App() {
-  const [mainExtendedFigures, setMainFigures] = useState([]);
+  const [mainExtendedFigures, setMainFigures] = useState({});
   const [supplementalFigures, setSupplementalFigures] = useState([]);
   axios.get('https://aspgjff15a.execute-api.us-east-2.amazonaws.com/beta/table')
 
@@ -66,19 +65,55 @@ function App() {
           <Route exact path="/">
               <HomePage></HomePage>
              </Route>
-          <Route  path="/main-figures">
-            <FiguresCollection figures={mainExtendedFigures}/>
+          <Route  exact path="/main-figures">
+            <FiguresCollection figures={Object.entries(mainExtendedFigures).map((figure, index) => {
+          return figure[1]
+        })}/>
           </Route>
-          <Route  path="/supplemental-figures">
-            <FiguresCollection figures={supplementalFigures}/>
+          <Route  path="/main-extended-figures/:id">
+            <StaticFigure figures={mainExtendedFigures}/>
           </Route>
-          <Route  path="/figure/:id" component={StaticFigure}/>
+
+          {/* <Route  path="/main-extended-figures/:id" render={({match, location}) => {
+              let id = match.params.id;
+              console.log(mainExtendedFigures)
+              let figure = mainExtendedFigures[id];
+              console.log(figure)
+              console.log("hi")
+              return (
+                <StaticFigure figure={figure}/>
+              )
+          }
+            
+          } /> */}
+          <Route  path="/supplemental-figures" exact>
+            <FiguresCollection figures={Object.entries(supplementalFigures).map((figure, index) => {
+          return figure[1]
+        })}/>
+          </Route>
+          <Route  path="/supplemental-figures/:id">
+            <StaticFigure figures={supplementalFigures}/>
+          </Route>
+          {/* <Route  path="/supplemental-figures/:id" render={({match, location}) => {
+              let id = match.params.id;
+              console.log(supplementalFigures)
+              let figure = supplementalFigures[id];
+              return (
+                <StaticFigure figure={figure}/>
+              )
+          }
+            
+          } /> */}
+
           <Route  path="/tables/:table" render={({ match, location }) => {
                 let page = match.params.table ? match.params.table : "extended_data_table_1"
                 return(
                   <TablesCollection table_pages={TABLE_PAGES} initial_page={TABLE_PAGES[page]}/>
                 )
             }}>
+          </Route>
+          <Route  path="/variant-annotation-tools">
+            <ToolsPage />
           </Route>
       </Switch>
       </Container>
