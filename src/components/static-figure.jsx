@@ -45,7 +45,7 @@ export const StaticFigure = (props) => {
                     imageSrc={S3_BASE_URL + figure.imgsrc}
                     imageAlt={figure.name}
                     square={true}
-                    magnifierSize="50%"
+                    magnifierSize="20%"
                     // mouseActivation={MOUSE_ACTIVATION.DOUBLE_CLICK} // Optional
                     // touchActivation={TOUCH_ACTIVATION.DOUBLE_TAP} // Optional
                   />
