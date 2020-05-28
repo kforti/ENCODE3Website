@@ -41,7 +41,7 @@ export const TABLE_PAGES = {
     supplementary_table_13: {tables: ["supplementary_table_13a", "supplementary_table_13b"],
                             nav_slug: "S13",
                             page_id: "supplementary_table_13"}, 
-    supplementary_table_14: {tables: ["supplementary_table_14_mouse", "supplementary_table_14_human"],
+    supplementary_table_14: {tables: ["supplementary_table_14_human","supplementary_table_14_mouse"],
                             nav_slug: "S14",
                             page_id: "supplementary_table_14"}, 
     supplementary_table_15: {tables: [ "supplementary_table_15"],
