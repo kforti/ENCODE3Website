@@ -8,7 +8,7 @@ export const NavBar = () => {
     <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 		  		  <a className="navbar-brand" href="#">
-				      ENCODE Encyclopedia V4</a>
+				      ENCODE Encyclopedia V5</a>
            <div className="navbar-nav" style={{marginLeft: '100px'}}>
             <Link to={{pathname: "/"}} className="nav-item nav-link active">Home <span className="sr-only">(current)</span></Link>
             <Link to={{pathname: "/main-figures"}} className="nav-item nav-link" >Figures</Link>
