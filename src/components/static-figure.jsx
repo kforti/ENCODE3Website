@@ -40,17 +40,17 @@ export const StaticFigure = (props) => {
                 <div>
                     {figure.ftype === "svg" && <object data={S3_BASE_URL + figure.imgsrc} className="ui massive image" type="image/svg+xml"/>}
                     {figure.ftype === "png" && 
-                    <GlassMagnifier
-                    className="medium"
-                    imageSrc={S3_BASE_URL + figure.imgsrc}
-                    imageAlt={figure.name}
-                    square={true}
-                    magnifierSize="20%"
-                    // mouseActivation={MOUSE_ACTIVATION.DOUBLE_CLICK} // Optional
-                    // touchActivation={TOUCH_ACTIVATION.DOUBLE_TAP} // Optional
-                  />
+                //     <GlassMagnifier
+                //     className="medium"
+                //     imageSrc={S3_BASE_URL + figure.imgsrc}
+                //     imageAlt={figure.name}
+                //     square={true}
+                //     magnifierSize="20%"
+                //     // mouseActivation={MOUSE_ACTIVATION.DOUBLE_CLICK} // Optional
+                //     // touchActivation={TOUCH_ACTIVATION.DOUBLE_TAP} // Optional
+                //   />
                     
-                    // <Image src={S3_BASE_URL + figure.imgsrc} size='massive'></Image> 
+                    <Image src={S3_BASE_URL + figure.imgsrc} size='big'></Image> 
                     }
                     <hr/>
                         <h3 style={{fontWeight: "bold"}}> {figure.name.includes("Main") ? figure.name.replace("Main-", "").split("-").join(" "): figure.name.split("-").join(" ")} | {figure.title}</h3>
