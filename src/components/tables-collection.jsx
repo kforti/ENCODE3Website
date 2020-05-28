@@ -6,13 +6,13 @@ import { TableContainer } from './common/table';
 const REMOTE_TABLES = [
 	"supplementary_table_11",
 	"supplementary_table_10",
-	"supplementary_table_13d",
-	"supplementary_table_13d", 
-	"supplementary_table_13e", 
-	"supplementary_table_13f", 
-	"supplementary_table_13h", 
-	"supplementary_table_13i", 
-	"supplementary_table_13j"]
+	"supplementary_table_22d",
+	"supplementary_table_22d", 
+	"supplementary_table_22e", 
+	"supplementary_table_22f", 
+	"supplementary_table_22h", 
+	"supplementary_table_22i", 
+	"supplementary_table_22j"]
 
 const Tab = ({ children }) => (
     <div>

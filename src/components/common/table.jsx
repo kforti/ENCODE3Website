@@ -66,7 +66,7 @@ export const TableContainer = ({ id, num_records, remote }) => {
 					item.sort = true;
 					item.sortFunc = sortFunc
 					item.sortCaret = (order, column) => {
-						if (!order) return (<div><Icon.CaretDown/><Icon.CaretUp/></div>);
+						if (!order) return (<div><Icon.CaretDown onClick={() => {console.log("hi")}}/><Icon.CaretUp/></div>);
 						else if (order === 'asc') return (<div><Icon.CaretDownFill/><Icon.CaretUp/></div>);
 						else if (order === 'desc') return (<div><Icon.CaretDown/><Icon.CaretUpFill/></div>);
 						return null;
@@ -104,7 +104,6 @@ export const TableContainer = ({ id, num_records, remote }) => {
 	}
 	console.log(loaded)
 	const sortFunc = (a, b, order, dataField, rowA, rowB) => {
-		setSorting(true);
 		console.log("entry")
 		console.log(b)
 		console.log(a)
@@ -122,17 +121,16 @@ export const TableContainer = ({ id, num_records, remote }) => {
 			console.log(a)
 		   if (order === 'asc') return a.localeCompare(b);
 		   else {
-			   setSorting(false);
+			 
 			   return b.localeCompare(a);
 		   }
 		}
 		
 		if (order === 'asc') return a - b;
 	   else {
-		setSorting(false)   
+	  
 		return b - a;
 	   }
-	   setSorting(false)
    }
 
    const onTableChange = (type, { sortField, sortOrder, data }) => {
