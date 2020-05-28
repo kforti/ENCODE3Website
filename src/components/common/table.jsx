@@ -102,23 +102,22 @@ export const TableContainer = ({ id, num_records, remote }) => {
 			return item
 		})
 	}
-	console.log(loaded)
 	const sortFunc = (a, b, order, dataField, rowA, rowB) => {
-		console.log("entry")
-		console.log(b)
-		console.log(a)
+		// console.log("entry")
+		// console.log(b)
+		// console.log(a)
 		// if(a == "0"){ a = "0.0"}
 		if(parseFloat(a) && parseFloat(b)){
 			a = typeof a === 'string' ? parseFloat(a.replace(/[,]/g, '')) : a
 			b = typeof b === 'string' ? parseFloat(b.replace(/[,]/g, '')) : b
-			console.log("transformed")
-			console.log(b)
-			console.log(a)
+			// console.log("transformed")
+			// console.log(b)
+			// console.log(a)
 		}
 		if(typeof a === 'string') {
-			console.log("assess")
-			console.log(b)
-			console.log(a)
+			// console.log("assess")
+			// console.log(b)
+			// console.log(a)
 		   if (order === 'asc') return a.localeCompare(b);
 		   else {
 			 

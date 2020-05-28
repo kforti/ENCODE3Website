@@ -1,15 +1,7 @@
 import React from 'react';
-import { Image, Container } from 'semantic-ui-react';
+import { Image, Container, Grid } from 'semantic-ui-react';
 import ReactHtmlParser from 'react-html-parser';
 import { useParams } from 'react-router-dom' 
-import {
-    Magnifier,
-    GlassMagnifier,
-    SideBySideMagnifier,
-    PictureInPictureMagnifier,
-    MOUSE_ACTIVATION,
-    TOUCH_ACTIVATION
-  } from "react-image-magnifiers";
 
 
 const S3_BASE_URL = "https://encode3-companion.s3.us-east-2.amazonaws.com/";
@@ -49,8 +41,10 @@ export const StaticFigure = (props) => {
                 //     // mouseActivation={MOUSE_ACTIVATION.DOUBLE_CLICK} // Optional
                 //     // touchActivation={TOUCH_ACTIVATION.DOUBLE_TAP} // Optional
                 //   />
+                
+                <Image style={{width: "100%"}}src={S3_BASE_URL + figure.imgsrc} size='huge'></Image>
                     
-                    <Image src={S3_BASE_URL + figure.imgsrc} size='big'></Image> 
+                    
                     }
                     <hr/>
                         <h3 style={{fontWeight: "bold"}}> {figure.name.includes("Main") ? figure.name.replace("Main-", "").split("-").join(" "): figure.name.split("-").join(" ")} | {figure.title}</h3>
