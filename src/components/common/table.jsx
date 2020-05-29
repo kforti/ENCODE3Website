@@ -215,6 +215,7 @@ export const TableContainer = ({ id, num_records, remote }) => {
 				 )
 			 }
 		 </ToolkitProvider>
+		 <p>** Here is some information about this table</p>
 		 <hr />
 		 </div>
 		)}
