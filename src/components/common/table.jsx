@@ -30,13 +30,11 @@ function Table(id='', num_records='all', remote=false, data=[], columns=[], titl
 export const TableContainer = ({ id, num_records, remote }) => {
 	const [ activeTable, setActiveTable ] = useState(new Table(id, num_records, remote));
 	const [loaded, setLoaded] = useState(false);
-	const [sorting, setSorting] = useState(false);
-	console.log(activeTable)
+
 	useEffect(() => {
 		if(!id){
 			return
 		}
-		console.log("EFFECT")
 		setLoaded(false);
 		setActiveTable(new Table(id, num_records, remote));
 		fetchTableData(id, remote, num_records)
@@ -56,7 +54,7 @@ export const TableContainer = ({ id, num_records, remote }) => {
 			},
 		})
 		.then(function (response) {
-			console.log(response.data)
+			// console.log(response.data)
 			if(response.data){
 				const new_table = response.data[0]
 				new_table.id = _id
@@ -66,7 +64,7 @@ export const TableContainer = ({ id, num_records, remote }) => {
 					item.sort = true;
 					item.sortFunc = sortFunc
 					item.sortCaret = (order, column) => {
-						if (!order) return (<div><Icon.CaretDown onClick={() => {console.log("hi")}}/><Icon.CaretUp/></div>);
+						if (!order) return (<div><Icon.CaretDown/><Icon.CaretUp/></div>);
 						else if (order === 'asc') return (<div><Icon.CaretDownFill/><Icon.CaretUp/></div>);
 						else if (order === 'desc') return (<div><Icon.CaretDown/><Icon.CaretUpFill/></div>);
 						return null;
@@ -75,12 +73,11 @@ export const TableContainer = ({ id, num_records, remote }) => {
 				})
 				preProcessTable(new_table);
 				setLoaded(true);
-				console.log(new_table)
 				setActiveTable(new_table);
 			}
 		})
 		.catch(function (error) {
-			console.log(error);
+			// console.log(error);
 		})
 		.finally(function () {
 			// always executed
@@ -103,31 +100,18 @@ export const TableContainer = ({ id, num_records, remote }) => {
 		})
 	}
 	const sortFunc = (a, b, order, dataField, rowA, rowB) => {
-		// console.log("entry")
-		// console.log(b)
-		// console.log(a)
-		// if(a == "0"){ a = "0.0"}
 		if(parseFloat(a) && parseFloat(b)){
 			a = typeof a === 'string' ? parseFloat(a.replace(/[,]/g, '')) : a
 			b = typeof b === 'string' ? parseFloat(b.replace(/[,]/g, '')) : b
-			// console.log("transformed")
-			// console.log(b)
-			// console.log(a)
 		}
 		if(typeof a === 'string') {
-			// console.log("assess")
-			// console.log(b)
-			// console.log(a)
 		   if (order === 'asc') return a.localeCompare(b);
 		   else {
-			 
 			   return b.localeCompare(a);
 		   }
 		}
-		
 		if (order === 'asc') return a - b;
 	   else {
-	  
 		return b - a;
 	   }
    }
@@ -141,13 +125,11 @@ export const TableContainer = ({ id, num_records, remote }) => {
    }
 
    const downloadRemoteCSV = () => {
-	   console.log("remote download")
 	   window.open(`https://encode3-companion.s3.us-east-2.amazonaws.com/${activeTable.s3_object}`,'_blank')
    }
 
     return(
     <div>
-
 		{!loaded && (
 			<Row className="show-grid" float="center">
 				<Col xs={12} xsOffset={6}>
@@ -159,7 +141,6 @@ export const TableContainer = ({ id, num_records, remote }) => {
 			</Row>
 			
 		)}
-		
 		{activeTable && activeTable.data.length > 0 && (
 		<div>
 		 <h3>{activeTable.title}</h3>
@@ -200,13 +181,13 @@ export const TableContainer = ({ id, num_records, remote }) => {
 					
 						<BootstrapTable bootStrap4={true}
 						wrapperClasses="container table-responsive" 
-						classes="table-responsive" { ...props.baseProps } 
+						// classes="table-responsive" 
+						{ ...props.baseProps } 
 						pagination={paginationFactory()} 
 						overlay={ overlayFactory({ spinner: true, background: 'rgba(192,192,192,0.3)' }) }
 						loading={!loaded}
-					/>
-
 						
+					/>
 					</div>
 					</div>
 					}
@@ -215,7 +196,13 @@ export const TableContainer = ({ id, num_records, remote }) => {
 				 )
 			 }
 		 </ToolkitProvider>
-		 <p>** Here is some information about this table</p>
+		 {activeTable.additional_info && 
+		 activeTable.additional_info.map((item) => {
+			return(
+			<p>{item}</p>
+			)
+		 })
+		 }
 		 <hr />
 		 </div>
 		)}

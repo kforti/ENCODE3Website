@@ -1,6 +1,6 @@
 import React from 'react';
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { TableContainer } from './common/table';
 
 const REMOTE_TABLES = [
@@ -33,7 +33,8 @@ const Pagination = ({ items, active, onClick }) => {
 		<ul class="pagination">
 			{items.map( (item, i) => (
 			<li key={i} className={item === active ? "active page-item" : "page-item"}>
-				<a class="page-link" href="#" onClick={() => {onClick(item)}}>{item.nav_slug}</a>
+				<Link to={{pathname: `/tables/${item.page_id}`}} className="nav-item nav-link page-link" onClick={() => {onClick(item)}}>{item.nav_slug}</Link>
+				{/* <a class="page-link" href="#" onClick={() => {onClick(item)}}></a> */}
 			</li>
 		) )}
 		</ul>
@@ -41,9 +42,15 @@ const Pagination = ({ items, active, onClick }) => {
 	)
 }
 
-export const TablesCollection = ({table_pages, initial_page}) => {
-	const [activePage, setActivePage] = useState(initial_page);
+export const TablesCollection = ({table_pages, page}) => {
+	const [activePage, setActivePage] = useState(page);
 	
+	useEffect(() => {
+		if(page){
+			setActivePage(page);
+		}
+	}, [page])
+
 	const onTableClick = (page) =>{
 		setActivePage(page)
 	}

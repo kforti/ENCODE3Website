@@ -27,13 +27,13 @@ const get_figure_collection = (id, setState) => {
 			},
 		})
 		.then(function (response) {
-			console.log(response.data)
+			// console.log(response.data)
 			if(response.data){
 				setState(response.data[id])
 			}
 		})
 		.catch(function (error) {
-			console.log(error);
+			// console.log(error);
 		})
 		.finally(function () {
 			// always executed
@@ -51,10 +51,6 @@ function App() {
   useEffect(() => {
     get_figure_collection("main-extended-figures", setMainFigures)
     get_figure_collection("supplemental-figures", setSupplementalFigures)
-    
-    return () => {
-      console.log("done")
-    }
   }, [])
 
   return (
@@ -73,19 +69,6 @@ function App() {
           <Route  path="/main-extended-figures/:id">
             <StaticFigure figures={mainExtendedFigures}/>
           </Route>
-
-          {/* <Route  path="/main-extended-figures/:id" render={({match, location}) => {
-              let id = match.params.id;
-              console.log(mainExtendedFigures)
-              let figure = mainExtendedFigures[id];
-              console.log(figure)
-              console.log("hi")
-              return (
-                <StaticFigure figure={figure}/>
-              )
-          }
-            
-          } /> */}
           <Route  path="/supplemental-figures" exact>
             <FiguresCollection figures={Object.entries(supplementalFigures).map((figure, index) => {
           return figure[1]
@@ -94,21 +77,10 @@ function App() {
           <Route  path="/supplemental-figures/:id">
             <StaticFigure figures={supplementalFigures}/>
           </Route>
-          {/* <Route  path="/supplemental-figures/:id" render={({match, location}) => {
-              let id = match.params.id;
-              console.log(supplementalFigures)
-              let figure = supplementalFigures[id];
-              return (
-                <StaticFigure figure={figure}/>
-              )
-          }
-            
-          } /> */}
-
           <Route  path="/tables/:table" render={({ match, location }) => {
                 let page = match.params.table ? match.params.table : "extended_data_table_1"
                 return(
-                  <TablesCollection table_pages={TABLE_PAGES} initial_page={TABLE_PAGES[page]}/>
+                  <TablesCollection table_pages={TABLE_PAGES} page={TABLE_PAGES[page]}/>
                 )
             }}>
           </Route>
@@ -117,6 +89,9 @@ function App() {
           </Route>
       </Switch>
       </Container>
+      <footer className='footer mt-auto py-3 bg-dark text-white'>
+        <div className='container'>ENCODE Encyclopedia V5</div>
+      </footer>
     </Router>    
 
   );

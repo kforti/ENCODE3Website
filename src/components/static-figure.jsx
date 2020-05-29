@@ -13,9 +13,7 @@ function htmlDecode(input) {
 
 export const StaticFigure = (props) => {
     const { id } = useParams();
-    console.log(props)
     const figure = props.figures ? props.figures[id] : null
-    console.log(figure)
     return(
         <Container>
             {!figure && 
@@ -32,40 +30,14 @@ export const StaticFigure = (props) => {
                 <div>
                     {figure.ftype === "svg" && <object data={S3_BASE_URL + figure.imgsrc} className="ui massive image" type="image/svg+xml"/>}
                     {figure.ftype === "png" && 
-                //     <GlassMagnifier
-                //     className="medium"
-                //     imageSrc={S3_BASE_URL + figure.imgsrc}
-                //     imageAlt={figure.name}
-                //     square={true}
-                //     magnifierSize="20%"
-                //     // mouseActivation={MOUSE_ACTIVATION.DOUBLE_CLICK} // Optional
-                //     // touchActivation={TOUCH_ACTIVATION.DOUBLE_TAP} // Optional
-                //   />
-                
-                <Image style={{width: "100%"}}src={S3_BASE_URL + figure.imgsrc} size='huge'></Image>
-                    
-                    
+                        <Image style={{width: "100%"}}src={S3_BASE_URL + figure.imgsrc} size='huge'></Image>    
                     }
                     <hr/>
                         <h3 style={{fontWeight: "bold"}}> {figure.name.includes("Main") ? figure.name.replace("Main-", "").split("-").join(" "): figure.name.split("-").join(" ")} | {figure.title}</h3>
                   { ReactHtmlParser(htmlDecode(figure.caption)) }
                 </div>
             }
+            <br/>
         </Container>
     )
 }
-// export const StaticFigure = (props) => {
-//     console.log(props)
-//     const figure = props.location.figureProps.figure
-
-//     return(
-//         <Container>
-//             {props.location.figureProps.figure.ftype === "svg" && <object data={S3_BASE_URL + props.location.figureProps.figure.imgsrc} className="ui massive image" type="image/svg+xml"/>}
-//             {props.location.figureProps.figure.ftype === "png" && <Image src={S3_BASE_URL + props.location.figureProps.figure.imgsrc} size='massive'></Image> }
-//             <hr/>
-//                 <h3 style={{fontWeight: "bold"}}> {figure.name.includes("Main") ? figure.name.replace("Main-", "").split("-").join(" "): figure.name.split("-").join(" ")} | {figure.title}</h3>
-//             <p> { ReactHtmlParser(htmlDecode(figure.caption)) } </p>
-            
-//         </Container>
-//     )
-// }
