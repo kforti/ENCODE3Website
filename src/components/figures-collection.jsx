@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import {CollectionCard} from './collection-card';
 import { Container, Card } from 'semantic-ui-react';
 
-
 export const FiguresCollection = ({figures, collectionId, row_size=3}) => {
     const [rows, setRows] = useState([])
 

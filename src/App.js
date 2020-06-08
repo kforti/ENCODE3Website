@@ -89,9 +89,20 @@ function App() {
           </Route>
       </Switch>
       </Container>
-      <footer className='footer mt-auto py-3 bg-dark text-white'>
+      <div class="navbar fixed-bottom navbar-expand-lg navbar-dark bg-dark">
+      <div className='container' style={{color: "white"}}>ENCODE Encyclopedia V5</div>
+      </div>
+      {/* <footer className='footer mt-auto py-3 bg-dark text-white' style={{
+        position: "fixed",
+        left: "0",
+        bottom: "0",
+        marginTop: "50px",
+        width: "100%",
+        color: "white",
+        textAlign: "center"
+}}>
         <div className='container'>ENCODE Encyclopedia V5</div>
-      </footer>
+      </footer> */}
     </Router>    
 
   );

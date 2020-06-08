@@ -204,6 +204,7 @@ export const TableContainer = ({ id, num_records, remote }) => {
 		 })
 		 }
 		 <hr />
+		 <br/>
 		 </div>
 		)}
        
