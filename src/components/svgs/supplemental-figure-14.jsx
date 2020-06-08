@@ -10,7 +10,7 @@ const InteractiveImage = (props) => {
   return(
         <g clipPath={props.clipPath}>
           
-          <rect width={props.width}  height={props.height} fill="black" strokeWidth="15" visibility={visibility}/> 
+          <rect transform={props.transform} width={props.width}  height={props.height} fill="black" strokeWidth="15" visibility={visibility}/> 
           <image
             onMouseOver={(e) => {setVisibility("visible")}}
             onMouseLeave={() => {setVisibility("hidden")}}
@@ -4077,7 +4077,7 @@ function SvgSupplementaryFigure14(props) {
       {textOverlay(EXPERIMENTS.mm1598.ref)}
       
       {/* mm1599 */}
-      <g transform="matrix(.77171 0 0 .77171 65.356 44.252)"ref={EXPERIMENTS.mm1599.ref}>
+      <g transform="matrix(.77171 0 0 .77171 65.356 44.252)" ref={EXPERIMENTS.mm1522.ref}>
         <defs>
           <path
             id="Supplementary-Figure-14-transgenic-mouse-embryos_svg__gA"
@@ -4136,6 +4136,18 @@ function SvgSupplementaryFigure14(props) {
       </g>
       {textOverlay(EXPERIMENTS.mm1599.ref)}
       
+      {/* mm1522 */}
+      <g ref={EXPERIMENTS.mm1522.ref}>
+      <InteractiveImage
+        overflow="visible"
+        width={1226}
+        height={1554}
+        experimentId={EXPERIMENTS.mm1522.id}
+        transform="translate(88.454 200.738) scale(.03573)"
+      />
+      </g>
+      {textOverlay(EXPERIMENTS.mm1522.ref)}
+
       <text
         fontSize={12.5}
         x={108.23}
@@ -5074,13 +5086,6 @@ function SvgSupplementaryFigure14(props) {
       >
         {"mm1599"}
       </text>
-      <InteractiveImage
-        overflow="visible"
-        width={1226}
-        height={1554}
-        experimentId={EXPERIMENTS.mm1522.id}
-        transform="translate(88.454 200.738) scale(.03573)"
-      />
       <text
         transform="rotate(-90)"
         fontSize={15}
