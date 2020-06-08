@@ -4077,7 +4077,7 @@ function SvgSupplementaryFigure14(props) {
       {textOverlay(EXPERIMENTS.mm1598.ref)}
       
       {/* mm1599 */}
-      <g transform="matrix(.77171 0 0 .77171 65.356 44.252)" ref={EXPERIMENTS.mm1522.ref}>
+      <g transform="matrix(.77171 0 0 .77171 65.356 44.252)" ref={EXPERIMENTS.mm1599.ref}>
         <defs>
           <path
             id="Supplementary-Figure-14-transgenic-mouse-embryos_svg__gA"
