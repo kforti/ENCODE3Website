@@ -17,26 +17,11 @@ function htmlDecode(input) {
   }
 
 export const StaticFigure = (props) => {
-    const [ svgLoaded, setSVGLoaded ] = useState(false);
+    const [ figureLoaded, setFigureLoaded ] = useState(false);
     const { id } = useParams();
     const figure = props.figures ? props.figures[id] : null
-    
-    const svgRender = () => {
-        if (figure && figure.id == "main-figure-2"){
-            const rects = SVG(document.getElementById("svg86001"));
-            console.log(rects)
-            //console.log(rects.get(0))
-        }
-    }
-    useEffect(() => {
-        if(svgLoaded){
-            svgRender()
-        }
-        return () => {
-      
-        }
-    })
-
+    console.log(figure)
+    if(figure){console.log(S3_BASE_URL + figure.imgsrc)}
     return(
         <Container>
             {!figure && 
@@ -51,13 +36,14 @@ export const StaticFigure = (props) => {
             }
             {figure &&
                 <div>
-                    {figure.ftype === "svg" && !figure.id == "main-figure-2" && <object id={figure.id} onLoad={() => {setSVGLoaded(true)}} data={S3_BASE_URL + figure.imgsrc} className="ui massive image" type="image/svg+xml"/>}
+                    {figure.ftype === "svg" && figure.id != "main-figure-2" && <object id={figure.id} data={S3_BASE_URL + figure.imgsrc} className="ui massive image" type="image/svg+xml"/>}
                     {figure.ftype === "svg" && figure.id == "main-figure-2" && 
                         <Image style={{width: "100%"}} size='huge'> <SvgMainFigure2/></Image> }
                     {figure.ftype === "png" && figure.id == "supplementary-figure-14" && 
                         <Image style={{width: "100%"}} size='huge'> <SvgSupplementaryFigure14/></Image> }
-                    {figure.ftype === "png" && !figure.id == "supplementary-figure-14" && 
-                        <Image style={{width: "100%"}}src={S3_BASE_URL + figure.imgsrc} size='huge'></Image>    
+                    {figure.ftype === "png" && figure.id != "supplementary-figure-14" && 
+                        <Image style={{width: "100%"}}src={S3_BASE_URL + figure.imgsrc} onLoad={() => {console.log("loaded")
+                            setFigureLoaded(true)}} size='huge'></Image>    
                     }
                     <hr/>
                         <h3 style={{fontWeight: "bold"}}> {figure.name.includes("Main") ? figure.name.replace("Main-", "").split("-").join(" "): figure.name.split("-").join(" ")} | {figure.title}</h3>
