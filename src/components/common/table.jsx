@@ -30,6 +30,7 @@ function Table(id='', num_records='all', remote=false, data=[], columns=[], titl
 export const TableContainer = ({ id, num_records, remote }) => {
 	const [ activeTable, setActiveTable ] = useState(new Table(id, num_records, remote));
 	const [loaded, setLoaded] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		if(!id){
@@ -73,6 +74,7 @@ export const TableContainer = ({ id, num_records, remote }) => {
 				})
 				preProcessTable(new_table);
 				setLoaded(true);
+				setLoading(false);
 				setActiveTable(new_table);
 			}
 		})
@@ -117,7 +119,7 @@ export const TableContainer = ({ id, num_records, remote }) => {
    }
 
    const onTableChange = (type, { sortField, sortOrder, data }) => {
-	   setLoaded(false);
+	   setLoading(true);
 	setTimeout(() => {
 		fetchTableData(activeTable.id, activeTable.remote, activeTable.num_records, sortField, sortOrder)
 	  }, 2000);
@@ -162,11 +164,13 @@ export const TableContainer = ({ id, num_records, remote }) => {
 						<BootstrapTable bootStrap4={true}
 						remote={ { sort: activeTable.remote } } 
 						wrapperClasses="container table-responsive" 
-						classes="table-responsive" { ...props.baseProps } 
-						pagination={paginationFactory()} 
+						{ ...props.baseProps } 
+						pagination={paginationFactory({
+							sizePerPage: 50
+						})} 
 						onTableChange={onTableChange}
 						overlay={ overlayFactory({ spinner: true, background: 'rgba(192,192,192,0.3)' }) }
-						loading={!loaded}
+						loading={loading}
 					/>
 					</div>
 					</div>
@@ -183,9 +187,12 @@ export const TableContainer = ({ id, num_records, remote }) => {
 						wrapperClasses="container table-responsive" 
 						// classes="table-responsive" 
 						{ ...props.baseProps } 
-						pagination={paginationFactory()} 
+						pagination={paginationFactory({
+							sizePerPage: 50
+						})} 
 						overlay={ overlayFactory({ spinner: true, background: 'rgba(192,192,192,0.3)' }) }
 						loading={!loaded}
+					
 						
 					/>
 					</div>
