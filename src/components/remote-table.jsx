@@ -29,7 +29,7 @@ const fetchTableData = (table, callBack, query_ops, sort_state) => {
         data.sort = sort_state
     }
 
-    axios.post('https://aspgjff15a.execute-api.us-east-2.amazonaws.com/beans', {
+    axios.post('https://aspgjff15a.execute-api.us-east-2.amazonaws.com/beans/table', {
         data: data,
     })
     .then((response) => callBack(response))
