@@ -1,5 +1,5 @@
 export const TABLE_PAGES = {
-    extended_data_table_1: {tables: ["extended_data_table_human", "extended_data_table_mouse"],
+    extended_data_table_1: {tables: ["extended_data_table_human", "extended_data_table_mouse",],
                             nav_slug: "T1",
                             page_id: "extended_data_table_1"},
     supplementary_table_1: {tables: ["supplementary_table_1a", "supplementary_table_1b", "supplementary_table_1c"],

@@ -4,9 +4,10 @@ import ToolkitProvider, { CSVExport, Search } from 'react-bootstrap-table2-toolk
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import overlayFactory from 'react-bootstrap-table2-overlay';
+import { Query } from '../query'
 
 import * as Icon from 'react-bootstrap-icons';
-import {Spinner, Row, Col} from 'react-bootstrap';
+import {Spinner, Row, Col, Button} from 'react-bootstrap';
 
 const { ExportCSVButton } = CSVExport;
 const { SearchBar } = Search;
@@ -31,6 +32,7 @@ export const TableContainer = ({ id, num_records, remote }) => {
 	const [ activeTable, setActiveTable ] = useState(new Table(id, num_records, remote));
 	const [loaded, setLoaded] = useState(false);
 	const [loading, setLoading] = useState(false);
+	
 
 	useEffect(() => {
 		if(!id){
@@ -118,7 +120,8 @@ export const TableContainer = ({ id, num_records, remote }) => {
 	   }
    }
 
-   const onTableChange = (type, { sortField, sortOrder, data }) => {
+   const onTableChange = (type, { page, sizePerPage, sortField, sortOrder, data }) => {
+	   console.log(page)
 	   setLoading(true);
 	setTimeout(() => {
 		fetchTableData(activeTable.id, activeTable.remote, activeTable.num_records, sortField, sortOrder)
@@ -129,6 +132,22 @@ export const TableContainer = ({ id, num_records, remote }) => {
    const downloadRemoteCSV = () => {
 	   window.open(`https://encode3-companion.s3.us-east-2.amazonaws.com/${activeTable.s3_object}`,'_blank')
    }
+
+   const runQuery = (ops) => {
+	   let data = {
+		   table_id: id,
+		   ops: ops
+	}
+	axios.post('http://127.0.0.1:5000/', {
+		data: data,
+		paramsSerializer: (params) => {
+			return qs.stringify(params, {arrayFormat: 'repeat'})
+		},
+	})
+	.then(function (response) {
+		console.log(response.data)
+   })
+}
 
     return(
     <div>
@@ -146,7 +165,13 @@ export const TableContainer = ({ id, num_records, remote }) => {
 		{activeTable && activeTable.data.length > 0 && (
 		<div>
 		 <h3>{activeTable.title}</h3>
-	
+		 <hr></hr>
+		 <Query cols={activeTable.columns} runQuery={runQuery} />
+		
+			
+			{/* {[...Array(queries).keys()].map((i) => {
+				return <QueryForm cols={activeTable.columns} onDelete={() =>}/>
+			})} */}
 		 <ToolkitProvider
 			 keyField= 'field0' data={ activeTable.data } columns={ activeTable.columns }
 			 exportCSV= {{fileName: activeTable.fileName}}
@@ -162,7 +187,7 @@ export const TableContainer = ({ id, num_records, remote }) => {
 							</a>
 					<div>
 						<BootstrapTable bootStrap4={true}
-						remote={ { sort: activeTable.remote } } 
+						remote
 						wrapperClasses="container table-responsive" 
 						{ ...props.baseProps } 
 						pagination={paginationFactory({
@@ -184,7 +209,7 @@ export const TableContainer = ({ id, num_records, remote }) => {
 					<div>
 					
 						<BootstrapTable bootStrap4={true}
-						wrapperClasses="container table-responsive" 
+						wrapperClasses="container table-responsive remote-table tableFixHead" 
 						// classes="table-responsive" 
 						{ ...props.baseProps } 
 						pagination={paginationFactory({
@@ -192,7 +217,7 @@ export const TableContainer = ({ id, num_records, remote }) => {
 						})} 
 						overlay={ overlayFactory({ spinner: true, background: 'rgba(192,192,192,0.3)' }) }
 						loading={!loaded}
-					
+						onTableChange={onTableChange}
 						
 					/>
 					</div>

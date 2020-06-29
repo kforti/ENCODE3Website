@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { TableContainer } from './common/table';
+import { RemoteTable } from './remote-table';
 
 const REMOTE_TABLES = [
 	"supplementary_table_11",
@@ -67,14 +67,16 @@ export const TablesCollection = ({table_pages, page}) => {
 	          </div>
 	          
 			<div><h2>{activePage.title}</h2>
-				{activePage.tables.map((id) => (
-					<TableContainer 
-					id={id}
-					// remove redundancy
-					num_records={REMOTE_TABLES.includes(id) ? '1000': 'all'}
-					remote={REMOTE_TABLES.includes(id) ? true: false}
-					/>
-				))}
+				{activePage.tables.map((id) => {
+					return(
+						<RemoteTable 
+							id={id}
+							page_size={2000}
+							page={1}
+							/>
+					)
+				}	
+				)}
 			</div>
 	          
 	        </div>
