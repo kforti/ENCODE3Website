@@ -29,7 +29,7 @@ const fetchTableData = (table, callBack, query_ops, sort_state) => {
         data.sort = sort_state
     }
 
-    axios.post('http://127.0.0.1:5000/table', {
+    axios.post('http://encodeapp-env-1.eba-bsbykeaw.us-east-2.elasticbeanstalk.com/table', {
         data: data,
     })
     .then((response) => callBack(response))
