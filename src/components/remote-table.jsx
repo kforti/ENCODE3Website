@@ -33,7 +33,7 @@ const fetchTableData = (table, callBack, filter_ops, sort_state, search_text) =>
         data.search = search_text;
     }
     // https://aspgjff15a.execute-api.us-east-2.amazonaws.com/beans/
-    axios.post('http://127.0.0.1:5000//table', {
+    axios.post('https://aspgjff15a.execute-api.us-east-2.amazonaws.com/beans/table', {
         data: data,
     })
     .then((response) => callBack(response))
