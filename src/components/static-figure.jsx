@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Container} from 'react-bootstrap';
+import { Image, Container} from 'semantic-ui-react';
 import ReactHtmlParser from 'react-html-parser';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';

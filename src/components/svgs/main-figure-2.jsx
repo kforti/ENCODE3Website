@@ -5,7 +5,7 @@ const LINKS = {
   dnaseSeq: "https://www.encodeproject.org/search/?type=Experiment&assay_slims=DNA+accessibility&assay_title=DNase-seq&award.project=ENCODE&award.project=Roadmap&files.file_type=bed+broadPeak&files.file_type=bigBed+narrowPeak&files.file_type=bed+narrowPeak&files.file_type=bigBed+broadPeak",
   chiaPet: "https://www.encodeproject.org/search/?type=Experiment&assay_title=ChIA-PET&replicates.library.biosample.donor.organism.scientific_name=Homo+sapiens&award.project=ENCODE",
   geneExpression: "https://www.encodeproject.org/search/?type=Experiment&assay_slims=Transcription&status=released&award.project=ENCODE&award.project=Roadmap",
-  rampgae: "https://www.encodeproject.org/search/?type=Experiment&replicates.library.biosample.donor.organism.scientific_name=Homo+sapiens&award.project=ENCODE&assay_title=RAMPAGE",
+  rampage: "https://www.encodeproject.org/search/?type=Experiment&replicates.library.biosample.donor.organism.scientific_name=Homo+sapiens&award.project=ENCODE&assay_title=RAMPAGE",
   tfChipSeq: "https://www.encodeproject.org/search/?type=Experiment&assay_slims=DNA+binding&target.investigated_as=transcription+factor&award.project=ENCODE&assay_title=TF+ChIP-seq",
   dnaMethylation: "https://www.encodeproject.org/search/?type=Experiment&status=released&assay_slims=DNA+methylation&award.project=ENCODE&award.project=Roadmap",
   histMarkChipSeq: "https://www.encodeproject.org/search/?type=Experiment&award.project=ENCODE&award.project=Roadmap&target.investigated_as=histone&assay_title=Histone+ChIP-seq",
