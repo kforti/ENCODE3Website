@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
-import { Image, Container, Grid } from 'semantic-ui-react';
+import React from 'react';
+import { Image, Container} from 'react-bootstrap';
 import ReactHtmlParser from 'react-html-parser';
 import { useParams } from 'react-router-dom';
-import { SVG } from '@svgdotjs/svg.js'
 import { useState } from 'react';
 import SvgMainFigure2 from './svgs/main-figure-2';
 import SvgSupplementaryFigure14 from './svgs/supplemental-figure-14';
@@ -38,16 +37,18 @@ export const StaticFigure = (props) => {
                 <div>
                     {figure.ftype === "svg" && figure.id != "main-figure-2" && <object id={figure.id} data={S3_BASE_URL + figure.imgsrc} className="ui massive image" type="image/svg+xml"/>}
                     {figure.ftype === "svg" && figure.id == "main-figure-2" && 
-                        <Image style={{width: "100%"}} size='huge'> <SvgMainFigure2/></Image> }
+                        <Image style={{width: "100%"}}> <SvgMainFigure2/></Image> }
                     {figure.ftype === "png" && figure.id == "supplementary-figure-14" && 
-                        <Image style={{width: "100%"}} size='huge'> <SvgSupplementaryFigure14/></Image> }
+                        <Image style={{width: "100%"}}> <SvgSupplementaryFigure14/></Image> }
                     {figure.ftype === "png" && figure.id != "supplementary-figure-14" && 
                         <Image style={{width: "100%"}}src={S3_BASE_URL + figure.imgsrc} onLoad={() => {console.log("loaded")
-                            setFigureLoaded(true)}} size='huge'></Image>    
+                            setFigureLoaded(true)}} ></Image>    
                     }
                     <hr/>
                         <h3 style={{fontWeight: "bold"}}> {figure.name.includes("Main") ? figure.name.replace("Main-", "").split("-").join(" "): figure.name.split("-").join(" ")} | {figure.title}</h3>
-                  { ReactHtmlParser(htmlDecode(figure.caption)) }
+                    <div className="figure-description" style={{fontSize: "14pt", lineHeight: "10px"}}>
+                    { ReactHtmlParser(htmlDecode(figure.caption)) }
+                    </div>
                 </div>
             }
         </Container>

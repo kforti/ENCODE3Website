@@ -83,7 +83,9 @@ function App() {
         </Container>
           </Route>
           <Route  path="/supplemental-figures/:id">
-            <StaticFigure figures={supplementalFigures}/>
+            <Container style={{padding: "12px", marginBottom: '4rem'}}>
+              <StaticFigure figures={supplementalFigures}/>
+            </Container>
           </Route>
           <Route  path="/tables/:table" render={({ match, location }) => {
                 let page = match.params.table ? match.params.table : "extended_data_table_1"
