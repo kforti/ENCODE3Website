@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { getSVG } from '../../js/test';
 
 const LINKS = {
   dnaseSeq: "https://www.encodeproject.org/search/?type=Experiment&assay_slims=DNA+accessibility&assay_title=DNase-seq&award.project=ENCODE&award.project=Roadmap&files.file_type=bed+broadPeak&files.file_type=bigBed+narrowPeak&files.file_type=bed+narrowPeak&files.file_type=bigBed+broadPeak",
@@ -258,7 +259,7 @@ const tfChipSeqText = () => {
 
 const dnaMethylText = () => {
   return(
-<text
+        <text
             style={{
               lineHeight: "110.00000238%",
               InkscapeFontSpecification: "'Helvetica Neue'",
@@ -311,7 +312,6 @@ const dnaMethylText = () => {
               {"(levels)"}
             </tspan>
           </text>
-
   )
 }
 
@@ -704,7 +704,7 @@ function SvgMainFigure2(props) {
   const [ chiaPetRect, setChiaPetRect ] = useState("");
   const [ geneExprRect, setGeneExprRect ] = useState("");
   return (
-    <svg width="100%" height={348.472} viewBox="0 0 425.197 326.693" {...props}>
+    <svg onLoad={getSVG} width="100%" height={348.472} viewBox="0 0 425.197 326.693" {...props}>
       <defs>
         <marker
           orient="auto"
@@ -878,6 +878,7 @@ function SvgMainFigure2(props) {
               />
         </filter>
       </defs>
+      
       <g transform="translate(0 -725.67)">
         {/* DNase-seq(DHSs) */}
        <InteractiveRectangle groupId={"dnase-seq"} text={dnaseText} href={LINKS.dnaseSeq} 
@@ -2082,7 +2083,6 @@ const InteractiveImage = (props) => {
 
 const InteractiveRectangle = (props) => {
   const [ fill, setFill ] = useState("");
-  console.log(props.text)
   return(
     <a target="_blank" href={props.href} style={{textDecoration: "none"}}>
         <g id={props.groupId} onMouseOver={() => {setFill("url(#shadow2)")}} onMouseLeave={() => {setFill("")}}>

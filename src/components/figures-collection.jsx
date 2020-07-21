@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 import {CollectionCard} from './collection-card';
-import { Container, Card } from 'semantic-ui-react';
+import { Container, CardDeck, Card } from 'react-bootstrap';
+import fig from '../Supplementary-Figure-5-ccRE-Tiers-2.png';
+import fig2 from '../logo512.png';
 
-export const FiguresCollection = ({figures, collectionId, row_size=3}) => {
+
+export const FiguresCollection = ({figures, title, collectionId, row_size=3}) => {
     const [rows, setRows] = useState([])
 
     useEffect(() => {
@@ -28,9 +31,9 @@ export const FiguresCollection = ({figures, collectionId, row_size=3}) => {
                 )
             if (row.length === row_size || i + 1 === figures.length){
                 structured_rows.push(
-                    <Card.Group key={`${collectionId}-${group}`}>
+                    <CardDeck style={{marginBottom: "1.5rem"}} key={`${collectionId}-${group}`}>
                         {row}
-                    </Card.Group>
+                    </CardDeck>
                     )
                     group += 1;
                 row = [];}
@@ -39,6 +42,9 @@ export const FiguresCollection = ({figures, collectionId, row_size=3}) => {
     }
     return (
         <Container>
+            <div className="text-center">
+                <h2 style={{marginBottom: "2.5rem", marginTop: "1.5rem"}}>{title}</h2>
+            </div>
             {rows}
         </Container>
     )

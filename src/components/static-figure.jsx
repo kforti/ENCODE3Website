@@ -50,8 +50,6 @@ export const StaticFigure = (props) => {
                   { ReactHtmlParser(htmlDecode(figure.caption)) }
                 </div>
             }
-            <hr/>
-            <br/>
         </Container>
     )
 }

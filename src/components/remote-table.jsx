@@ -15,21 +15,25 @@ const { SearchBar } = Search;
 const axios = require('axios');
 var qs = require('qs');
 
-const fetchTableData = (table, callBack, query_ops, sort_state) => {
+const fetchTableData = (table, callBack, filter_ops, sort_state, search_text) => {
     //aspgjff15a.execute-api.us-east-2.amazonaws.com/beta
     let data = {
         table: {id: table.id},
         view: {page: table.page, page_size: table.page_size},
     }
-    if(query_ops.length > 0){
-        data.query = {query_ops: query_ops}
+    if(filter_ops.length > 0){
+        data.filter = {filter_ops: filter_ops}
     }
 
     if(Object.keys(sort_state).length > 0){
         data.sort = sort_state
     }
 
-    axios.post('https://aspgjff15a.execute-api.us-east-2.amazonaws.com/beans/table', {
+    if(search_text){
+        data.search = search_text;
+    }
+    // https://aspgjff15a.execute-api.us-east-2.amazonaws.com/beans/
+    axios.post('http://127.0.0.1:5000//table', {
         data: data,
     })
     .then((response) => callBack(response))
@@ -68,12 +72,15 @@ function Table(table_data) {
 }
 
 
-export const RemoteTable = ({ id, page, page_size}) => {
+export const RemoteTable = ({ id}) => {
 	const [ activeTable, setActiveTable ] = useState(null);
 	const [loaded, setLoaded] = useState(false);
     const [loading, setLoading] = useState(false);
     const [updateTable, setUpdateTable] = useState(false);
-    const [sortState, setSortState] = useState({})
+    const [sortState, setSortState] = useState({});
+    const [pageSize, setPageSize] = useState(1000);
+    const [page, setPage] = useState(1);
+    const [search, setSearch] = useState('');
     const [queryOps, setQueryOps] = useState([]);
 
     
@@ -83,7 +90,6 @@ export const RemoteTable = ({ id, page, page_size}) => {
         totalSize: activeTable.total_size,
         sizePerPageList: [100, 500, 1000, 2500, 5000] }) : null;
     
-
 	useEffect(() => {
 		if(!id){
 			return
@@ -100,7 +106,7 @@ export const RemoteTable = ({ id, page, page_size}) => {
             fileName: '',  
             s3_object: '', 
             page: page,  
-            page_size: page_size, 
+            page_size: pageSize, 
             total_size: 0}
             ));
         setUpdateTable(true);
@@ -110,7 +116,9 @@ export const RemoteTable = ({ id, page, page_size}) => {
 		if(!activeTable){
 			return
         }
-        fetchTableData(activeTable, runUpdateTable, queryOps, sortState)
+        activeTable.page = page;
+        activeTable.page_size = pageSize;
+        fetchTableData(activeTable, runUpdateTable, queryOps, sortState, search)
     }, [updateTable])
 
     const runUpdateTable = (response) => {
@@ -128,7 +136,7 @@ export const RemoteTable = ({ id, page, page_size}) => {
                 if(item.dataField in sortState){
                     item.direction = sortState[item.dataField]
                 }
-                item.headerStyle = {backgroundColor: "#d0e0f1", border: "0.5px solid #00000073"}
+                item.headerStyle = {backgroundColor: "#efefef", border: "0.2px solid #00000073"}
                 item.sortCaret = (order, column) => {
                     if(column.direction){
                         if (column.direction === 'asc') return (<div><Icon.CaretDown/><Icon.CaretUpFill/></div>);
@@ -161,8 +169,7 @@ export const RemoteTable = ({ id, page, page_size}) => {
 					item[key] = item[key].toLocaleString('en-us')
 				}
 				return item
-			})
-		}
+			})}
 	}
 	
    const updateSort = (sortField, sortOrder) => {
@@ -179,11 +186,22 @@ export const RemoteTable = ({ id, page, page_size}) => {
         setUpdateTable(true)
     }
    
-   const onTableChange = (type, { page, sizePerPage, sortField, sortOrder, data }) => {
-     
+   const onTableChange = (type, { page, sizePerPage, searchText, filters, sortField, sortOrder, data }) => {
+        console.log(type)
        if(type == 'sort'){
            updateSort(sortField, sortOrder)
            setLoading(true);
+       }
+       else if(type == 'pagination'){
+           setPage(page);
+           setPageSize(sizePerPage);
+           setUpdateTable(true);
+
+
+       }
+       else if(type == 'search') {
+        setSearch(searchText);
+        setUpdateTable(true);
        }
        
 	//    setLoading(true);
@@ -198,9 +216,14 @@ export const RemoteTable = ({ id, page, page_size}) => {
    }
 
    const runQuery = (ops) => {
+    setLoading(true);
     setQueryOps(ops);
     setUpdateTable(true);
 }
+
+    const customMatchFunc = (e) => {
+        console.log(e)
+    }
     return(
     <div>
 		{!loaded && (
@@ -215,15 +238,11 @@ export const RemoteTable = ({ id, page, page_size}) => {
 			
 		)}
 		{activeTable && activeTable.columns.length > 0 && (
-		<div>
+		<div style={{marginTop: "3rem"}}>
 		 <h3>{activeTable.title}</h3>
 		 <hr></hr>
 		 <Query cols={activeTable.columns} runQuery={runQuery} />
 		
-			
-			{/* {[...Array(queries).keys()].map((i) => {
-				return <QueryForm cols={activeTable.columns} onDelete={() =>}/>
-			})} */}
 		 <ToolkitProvider
 			 keyField= 'field0' data={ activeTable.data } columns={ activeTable.columns }
 			 exportCSV= {{fileName: activeTable.fileName}}
@@ -231,11 +250,12 @@ export const RemoteTable = ({ id, page, page_size}) => {
 			 >
 			 {
 				 props => (
-					 
-                    <div>
+                    <div >
+                        <div style={{marginBottom: '1rem'}}>
                         <a href={`https://encode3-companion.s3.us-east-2.amazonaws.com/${activeTable.s3_object}`} target='_blank' download={`${activeTable.id}.csv`}>
-                            <ExportCSVButton className="btn-primary" onClick={downloadRemoteCSV} { ...props.csvProps } >Export CSV</ExportCSVButton>					
+                            <ExportCSVButton className="btn-primary" onClick={downloadRemoteCSV} { ...props.csvProps } >Export Entire CSV</ExportCSVButton>
                         </a>
+                            <ExportCSVButton style={{marginLeft: "5px"}} className="btn-primary" { ...props.csvProps } >Export Data Below</ExportCSVButton>						
                         <Button style={{marginLeft: "5px"}} onClick={() => {
                             setSortState({})
                             setQueryOps([])
@@ -243,7 +263,9 @@ export const RemoteTable = ({ id, page, page_size}) => {
                                 item.sortCaret(null, item)
                             })
                             setUpdateTable(true)}}>Reset Table</Button>
-					<div>
+                        {/* <SearchBar { ...props.searchProps }   style={{marginLeft: "1rem"}}/> */}
+                        </div>
+                    <div>
 						<BootstrapTable bootStrap4={true}
 						remote
 						wrapperClasses="container table-responsive remote-table tableFixHead" 
@@ -266,7 +288,6 @@ export const RemoteTable = ({ id, page, page_size}) => {
 			)
 		 })
 		 }
-		 <hr />
 		 <br/>
 		 </div>
 		)}

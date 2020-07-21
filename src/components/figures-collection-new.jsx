@@ -30,7 +30,7 @@ const getFigureCollection = async (id, callback) => {
 		});
 	}
 
-export const NewFiguresCollection = ({collectionIds, displayId, row_size=3}) => {
+export const NewFiguresCollection = ({collectionIds, displayId,  row_size=3}) => {
     const [collections, setCollections] = useState({});
     const [displayCollections, setDisplayCollections] = useState({});
     const [displayRows, setDisplayRows] = useState([]);
@@ -79,6 +79,7 @@ export const NewFiguresCollection = ({collectionIds, displayId, row_size=3}) => 
     console.log(collections);
     return (
         <Container>
+            
             {displayRows}
         </Container>
     )
