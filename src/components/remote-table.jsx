@@ -126,6 +126,7 @@ export const RemoteTable = ({ id}) => {
         const newTable = Object.assign({}, activeTable);
         if(response.data){
             const data = response.data
+        
             newTable.data = data.data
             newTable.columns = data.columns
             newTable.total_size = data.total_size
@@ -151,10 +152,13 @@ export const RemoteTable = ({ id}) => {
                     else if (order === 'desc') return (<div><Icon.CaretDownFill/><Icon.CaretUp/></div>);
 
                     return null;
-                  }
-                  
+                    }
+                    
                 return item
             })
+        }
+        else {
+           newTable.data = []
         }
         preProcessTable(newTable);
         setLoaded(true);
