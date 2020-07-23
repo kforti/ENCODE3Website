@@ -14,7 +14,7 @@ const LINKS = {
   hiC: "https://www.encodeproject.org/search/?type=Experiment&assay_slims=3D+chromatin+structure&assay_title=Hi-C",
   atacSeq: "https://www.encodeproject.org/search/?type=Experiment&assay_slims=DNA+accessibility&assay_title=ATAC-seq&award.project=ENCODE&award.project=Roadmap&files.file_type=bed+broadPeak&files.file_type=bigBed+narrowPeak&files.file_type=bed+narrowPeak&files.file_type=bigBed+broadPeak",
   pieplines:"https://www.encodeproject.org/pipelines/",
-  variantAnnotation: "https://master.d23d4n4dkhpzr7.amplifyapp.com/variant-annotation-tools",
+  variantAnnotation: "https://encyclopedia.encodeproject.org/variant-annotation-tools",
   regElementRegistry: "http://screen.umassmed.edu/", encodePortal: "https://www.encodeproject.org/"
 
 }
