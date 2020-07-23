@@ -21,7 +21,7 @@ export const CollectionCard= ({figure}) => {
         setIsLoaded(true)
     }
     const collection = figure.id.includes("supplementary") ? "supplemental-figures" : "main-extended-figures";
-    console.log(figure)
+    
     return (
         <Card>
             

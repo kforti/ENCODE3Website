@@ -115,12 +115,10 @@ export const QueryForm = ({
         "less than or equal to",
         "greater than or equal to"
         ]}) => {
-        console.log(query)
     return(
         <Form onSubmit={
             (e) => {
                 e.preventDefault()
-                console.log(onSubmit)
                 onSubmit()
             }
         }>

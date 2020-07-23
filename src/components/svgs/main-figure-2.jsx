@@ -1812,6 +1812,7 @@ const RegulatoryElementRegistry = () => {
   return(
     <g onMouseOver={() => {setFill("url(#shadow2)")}}
     onMouseLeave={() => {setFill("")}}
+    style={{cursor: "pointer"}}
     onClick={() => {window.open( 
       LINKS.regElementRegistry, "_blank");}}>
     <rect
@@ -2084,7 +2085,7 @@ const InteractiveImage = (props) => {
 const InteractiveRectangle = (props) => {
   const [ fill, setFill ] = useState("");
   return(
-    <a target="_blank" href={props.href} style={{textDecoration: "none"}}>
+    <a target="_blank" href={props.href} onMouseOver=""style={{textDecoration: "none", cursor: "pointer"}}>
         <g id={props.groupId} onMouseOver={() => {setFill("url(#shadow2)")}} onMouseLeave={() => {setFill("")}}>
         <rect
             width={props.width}

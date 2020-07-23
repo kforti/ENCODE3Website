@@ -38,7 +38,8 @@ const fetchTableData = (table, callBack, filter_ops, sort_state, search_text) =>
     })
     .then((response) => callBack(response))
     .catch(function (error) {
-        // console.log(error);
+        const response = {data: false}
+        callBack(response)
     })
     .finally(function () {
         // always executed
@@ -122,9 +123,9 @@ export const RemoteTable = ({ id}) => {
     }, [updateTable])
 
     const runUpdateTable = (response) => {
+        const newTable = Object.assign({}, activeTable);
         if(response.data){
             const data = response.data
-            const newTable = Object.assign({}, activeTable);
             newTable.data = data.data
             newTable.columns = data.columns
             newTable.total_size = data.total_size
@@ -154,12 +155,12 @@ export const RemoteTable = ({ id}) => {
                   
                 return item
             })
-            preProcessTable(newTable);
-            setLoaded(true);
-            setLoading(false);
-            setUpdateTable(false);
-            setActiveTable(newTable);
         }
+        preProcessTable(newTable);
+        setLoaded(true);
+        setLoading(false);
+        setUpdateTable(false);
+        setActiveTable(newTable);
     }
 
 	const preProcessTable = (new_table) => {
@@ -187,7 +188,7 @@ export const RemoteTable = ({ id}) => {
     }
    
    const onTableChange = (type, { page, sizePerPage, searchText, filters, sortField, sortOrder, data }) => {
-        console.log(type)
+        // console.log(type)
        if(type == 'sort'){
            updateSort(sortField, sortOrder)
            setLoading(true);
@@ -224,6 +225,8 @@ export const RemoteTable = ({ id}) => {
     const customMatchFunc = (e) => {
         console.log(e)
     }
+
+    activeTable && console.log(activeTable.id)
     return(
     <div>
 		{!loaded && (
@@ -275,18 +278,17 @@ export const RemoteTable = ({ id}) => {
 						overlay={ overlayFactory({ spinner: true, background: 'rgba(192,192,192,0.3)' }) }
                         loading={loading}
                         noDataIndication="Table is Empty"
+                        key={id + "table"}
 					/>
 					</div>
 				 </div>
 				 )
 			 }
 		 </ToolkitProvider>
-		 {activeTable.additional_info && 
-		 activeTable.additional_info.map((item) => {
-			return(
-			<p>{item}</p>
-			)
-		 })
+		 {activeTable.id == "supplementary_table_12" && 
+		 
+			<p>** 0 denotes inactive; 1 denotes active</p>
+			
 		 }
 		 <br/>
 		 </div>

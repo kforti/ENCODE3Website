@@ -19,8 +19,7 @@ export const StaticFigure = (props) => {
     const [ figureLoaded, setFigureLoaded ] = useState(false);
     const { id } = useParams();
     const figure = props.figures ? props.figures[id] : null
-    console.log(figure)
-    if(figure){console.log(S3_BASE_URL + figure.imgsrc)}
+    
     return(
         <Container>
             {!figure && 
@@ -41,7 +40,7 @@ export const StaticFigure = (props) => {
                     {figure.ftype === "png" && figure.id == "supplementary-figure-14" && 
                         <Image style={{width: "100%"}}> <SvgSupplementaryFigure14/></Image> }
                     {figure.ftype === "png" && figure.id != "supplementary-figure-14" && 
-                        <Image style={{width: "100%"}}src={S3_BASE_URL + figure.imgsrc} onLoad={() => {console.log("loaded")
+                        <Image style={{width: "100%"}}src={S3_BASE_URL + figure.imgsrc} onLoad={() => {
                             setFigureLoaded(true)}} ></Image>    
                     }
                     <hr/>

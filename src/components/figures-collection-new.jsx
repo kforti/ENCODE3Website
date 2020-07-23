@@ -17,13 +17,13 @@ const getFigureCollection = async (id, callback) => {
 			},
 		})
 		.then(function (response) {
-			console.log(response.data)
+			// console.log(response.data)
 			if(response.data){
 				callback(id, Object.entries(response.data[id]))
 			}
 		})
 		.catch(function (error) {
-			console.log(error);
+			// console.log(error);
 		})
 		.finally(function () {
 			// always executed
@@ -42,7 +42,7 @@ export const NewFiguresCollection = ({collectionIds, displayId,  row_size=3}) =>
                     let rows = structureRows(data);
                     let newCollections = Object.assign({}, collections);
                     newCollections[id] = rows;
-                    console.log(newCollections);
+                    // console.log(newCollections);
                     setCollections(newCollections); 
                 })
             })
@@ -59,10 +59,8 @@ export const NewFiguresCollection = ({collectionIds, displayId,  row_size=3}) =>
     function structureRows(figures) {
         let structured_rows = [];
         var row = [];
-        console.log(figures);
         for (var i = 0; i < figures.length; i++) {
             var fig = figures[i][1];
-            console.log(fig);
             row.push(
                 <CollectionCard figure={fig}/>
                 )
@@ -76,7 +74,6 @@ export const NewFiguresCollection = ({collectionIds, displayId,  row_size=3}) =>
         }
         return structured_rows
     }
-    console.log(collections);
     return (
         <Container>
             

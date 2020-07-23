@@ -25,7 +25,7 @@ const get_figure_collection = (id, setState) => {
 			},
 		})
 		.then(function (response) {
-			console.log(response.data)
+			// console.log(response.data)
 			if(response.data){
 				setState(response.data[id])
 			}
@@ -46,7 +46,7 @@ function App() {
     get_figure_collection("main-extended-figures", setMainFigures)
     get_figure_collection("supplemental-figures", setSupplementalFigures)
   }, [])
-  console.log(mainExtendedFigures)
+  // console.log(mainExtendedFigures)
   return (
     <Router>
       <NavBar/>
@@ -61,7 +61,7 @@ function App() {
           <Route  exact path="/main-figures">
           <Container style={{padding: "12px", marginBottom: '4rem'}}>
             <FiguresCollection title="Main and Extended Figures" figures={Object.entries(mainExtendedFigures).map((figure, index) => {
-              console.log(figure[0])
+              
               if(figure[0] != "Main-Figure-2"){
                 figure[1].thumbnail_url = figure[1].thumbnail_url.replace("Thumbnails", "Images")
               }

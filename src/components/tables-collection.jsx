@@ -68,6 +68,7 @@ export const TablesCollection = ({table_pages, page}) => {
 					return(
 						<RemoteTable 
 							id={id}
+							key={id}
 							/>
 					)}	
 				)}
