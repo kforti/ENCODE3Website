@@ -21,7 +21,7 @@ export const ContactPage = () => {
         <div>
         <Row>
             <Col></Col>
-            <Col><h4 style={{textDecoration: "underline"}}>Contact Information</h4></Col>
+            <Col><h4 >Contact Information:</h4></Col>
             <Col></Col>
             <Col></Col>
             <Col></Col>

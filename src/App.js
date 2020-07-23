@@ -97,10 +97,12 @@ function App() {
             }}>
           </Route>
           <Route  path="/variant-annotation-tools">
+          <Container style={{padding: "12px", marginBottom: '4rem'}}>
             <ToolsPage />
+            </Container>
           </Route>
           <Route  path="/contact">
-            <ContactPage />
+              <ContactPage />
           </Route>
       </Switch>
       {/* </Container> */}
