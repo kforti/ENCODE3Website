@@ -28,8 +28,148 @@ function Table(id='', num_records='all', remote=false, data=[], columns=[], titl
 }
 
 
-export const TableContainer = ({ id, num_records, remote }) => {
-	const [ activeTable, setActiveTable ] = useState(new Table(id, num_records, remote));
+const getRemoteTable = (id) => {
+	if(id == "supplementary_table_10"){
+		return getTable10(id)
+	}
+	else if(id == "supplementary_table_11"){
+		return getTable11(id)
+	}
+	else if(id == "supplementary_table_22f"){
+		return getTable22f(id)
+	}
+	else if(id == "supplementary_table_22d"){
+		return getTable22d(id)
+	}
+	else if(id == "supplementary_table_22e"){
+		return getTable22e(id)
+	}
+	else if(id == "supplementary_table_22h"){
+		return getTable22h(id)
+	}
+	else if(id == "supplementary_table_22i"){
+		return getTable22i(id)
+	}
+	else if(id == "supplementary_table_22j"){
+		return getTable22j(id)
+	}
+
+}
+
+
+const getTable10 = (id) =>{
+	let table = new Table(id,
+		0,
+		[],
+		[],
+		true, 
+		"Supplementary Table 10 - Human-cCREs",
+		"supplementary_table_10.csv",
+		"tables/supplementary_table_10/supplementary_table_10.csv",
+	)
+	return table
+}
+
+
+const getTable11 = (id) => {
+	let table = new Table(id,
+		0,
+		[],
+		[],
+		true,
+		"Supplementary Table 11 - Mouse-cCREs", 
+		"supplementary_table_11.csv",
+		"tables/supplementary_table_11/supplementary_table_11.csv",
+	)
+	return table
+}
+
+
+const getTable22f = (id) => {
+	let table = new Table(id,
+		0,
+		[],
+		[],
+		true,
+		"Supplementary Table 22f. Ranked limb e11.5 mouse elements", 
+		"supplementary_table_22f.csv",
+		"tables/supplementary_table_22/supplementary_table_22f.csv",
+	)
+	return table
+}
+
+const getTable22d = (id) => {
+	let table = new Table(id,
+		0,
+		[],
+		[],
+		true,
+		"Supplementary Table 22d. Ranked midbrain e11.5 mouse elements", 
+		"supplementary_table_22d.csv",
+		"tables/supplementary_table_22/supplementary_table_22d.csv",
+	)
+	return table
+}
+
+
+const getTable22e = (id) => {
+	let table = new Table(id,
+		0,
+		[],
+		[],
+		true,
+		"Supplementary Table 22e. Ranked hindbrain e11.5 mouse elements", 
+		"supplementary_table_22e.csv",
+		"tables/supplementary_table_22/supplementary_table_22e.csv",
+	)
+	return table
+}
+
+
+const getTable22h = (id) => {
+	let table = new Table(id,
+		0,
+		[],
+		[],
+		true,
+		"Supplementary Table 22h. Ranked forebrain e12.5 mouse elements", 
+		"supplementary_table_22h.csv",
+		"tables/supplementary_table_22/supplementary_table_22h.csv",
+	)
+	return table
+}
+
+
+const getTable22i = (id) => {
+	let table = new Table(id,
+		0,
+		[],
+		[],
+		true,
+		"Supplementary Table 22i. Ranked heart e12.5 mouse elements", 
+		"supplementary_table_22i.csv",
+		"tables/supplementary_table_22/supplementary_table_22i.csv",
+	)
+	return table
+}
+
+
+const getTable22j = (id) => {
+	let table = new Table(id,
+		0,
+		[],
+		[],
+		true,
+		"Supplementary Table 22j. Ranked limb e12.5 mouse elements", 
+		"supplementary_table_22j.csv",
+		"tables/supplementary_table_22/supplementary_table_22j.csv",
+	)
+	return table
+}
+
+
+export const LocalTable = ({ id, remote }) => {
+	const [ activeTable, setActiveTable ] = useState(new Table(id));
 	const [loaded, setLoaded] = useState(false);
 	const [loading, setLoading] = useState(false);
 	
@@ -38,19 +178,28 @@ export const TableContainer = ({ id, num_records, remote }) => {
 		if(!id){
 			return
 		}
+		if(remote){
+			console.log(id)
+			setLoaded(true);
+			setActiveTable(getRemoteTable(id))
+			return
+		}
 		setLoaded(false);
-		setActiveTable(new Table(id, num_records, remote));
-		fetchTableData(id, remote, num_records)
+		setActiveTable(new Table(id));
+		fetchTableData(id)
     }, [id])
 
-	const fetchTableData = (_id, _remote, _num_records, sort_column, sort_order) => {
+	const pagination = activeTable ? paginationFactory({ 
+        page: 1,
+		sizePerPageList: [100, 500, 1000, 2500, 5000],
+		sizePerPage: 50 
+	}) : null;
+
+	const fetchTableData = (_id) => {
 		//aspgjff15a.execute-api.us-east-2.amazonaws.com/beta
 		axios.get('https://aspgjff15a.execute-api.us-east-2.amazonaws.com/beta/table', {
 			params: {
-			id: id,
-			num_records: num_records,
-			sort_column: sort_column,
-			sort_order: sort_order
+			id: id
 			},
 			paramsSerializer: (params) => {
 				return qs.stringify(params, {arrayFormat: 'repeat'})
@@ -61,8 +210,6 @@ export const TableContainer = ({ id, num_records, remote }) => {
 			if(response.data){
 				const new_table = response.data[0]
 				new_table.id = _id
-				new_table.remote = _remote
-				new_table.num_records = _num_records
 				new_table.columns.map((item) => {
 					item.sort = true;
 					item.sortFunc = sortFunc
@@ -99,7 +246,7 @@ export const TableContainer = ({ id, num_records, remote }) => {
 		new_table.columns = new_table.columns.map((item) => {
 			item.sort = true;
 			item.sortFunc = sortFunc
-			item.headerStyle = {backgroundColor: "#d0e0f1", border: "0.5px solid #00000073"}
+			item.headerStyle = {backgroundColor: "#efefef", border: "0.2px solid #00000073"}
 			return item
 		})
 	}
@@ -120,35 +267,20 @@ export const TableContainer = ({ id, num_records, remote }) => {
 	   }
    }
 
-   const onTableChange = (type, { page, sizePerPage, sortField, sortOrder, data }) => {
-	   console.log(page)
-	   setLoading(true);
-	setTimeout(() => {
-		fetchTableData(activeTable.id, activeTable.remote, activeTable.num_records, sortField, sortOrder)
-	  }, 2000);
+//    const onTableChange = (type, { page, sizePerPage, sortField, sortOrder, data }) => {
+// 	   console.log(page)
+// 	   setLoading(true);
+// 	setTimeout(() => {
+// 		fetchTableData(activeTable.id, activeTable.remote, activeTable.num_records, sortField, sortOrder)
+// 	  }, 2000);
 	  
-   }
+//    }
 
    const downloadRemoteCSV = () => {
 	   window.open(`https://encode3-companion.s3.us-east-2.amazonaws.com/${activeTable.s3_object}`,'_blank')
    }
 
-   const runQuery = (ops) => {
-	   let data = {
-		   table_id: id,
-		   ops: ops
-	}
-	axios.post('http://127.0.0.1:5000/', {
-		data: data,
-		paramsSerializer: (params) => {
-			return qs.stringify(params, {arrayFormat: 'repeat'})
-		},
-	})
-	.then(function (response) {
-		console.log(response.data)
-   })
-}
-
+   console.log(activeTable)
     return(
     <div>
 		{!loaded && (
@@ -162,16 +294,11 @@ export const TableContainer = ({ id, num_records, remote }) => {
 			</Row>
 			
 		)}
-		{activeTable && activeTable.data.length > 0 && (
+		{activeTable && (
 		<div>
 		 <h3>{activeTable.title}</h3>
 		 <hr></hr>
-		 <Query cols={activeTable.columns} runQuery={runQuery} />
-		
 			
-			{/* {[...Array(queries).keys()].map((i) => {
-				return <QueryForm cols={activeTable.columns} onDelete={() =>}/>
-			})} */}
 		 <ToolkitProvider
 			 keyField= 'field0' data={ activeTable.data } columns={ activeTable.columns }
 			 exportCSV= {{fileName: activeTable.fileName}}
@@ -180,51 +307,48 @@ export const TableContainer = ({ id, num_records, remote }) => {
 			 {
 				 props => (
 					 <div>
-					{ activeTable.remote &&
-						<div>
-							<a href={`https://encode3-companion.s3.us-east-2.amazonaws.com/${activeTable.s3_object}`} target='_blank' download={`${activeTable.id}.csv`}>
-								<ExportCSVButton className="btn-primary" onClick={downloadRemoteCSV} { ...props.csvProps } >Export CSV</ExportCSVButton>					
-							</a>
-					<div>
-						<BootstrapTable bootStrap4={true}
-						remote
-						wrapperClasses="container table-responsive" 
-						{ ...props.baseProps } 
-						pagination={paginationFactory({
-							sizePerPage: 50
-						})} 
-						onTableChange={onTableChange}
-						overlay={ overlayFactory({ spinner: true, background: 'rgba(192,192,192,0.3)' }) }
-						loading={loading}
-					/>
-					</div>
-					</div>
-					}
-					{ !activeTable.remote &&
-						<div>
-							<a href={`https://encode3-companion.s3.us-east-2.amazonaws.com/${activeTable.s3_object}`} target='_blank' download={`${activeTable.id}.csv`}>
-								<ExportCSVButton className="btn-primary" { ...props.csvProps } >Export CSV</ExportCSVButton>
-							</a>					
-					 <SearchBar { ...props.searchProps } style={{marginLeft: '20px'}}/>
-					<div>
 					
-						<BootstrapTable bootStrap4={true}
-						wrapperClasses="container table-responsive remote-table tableFixHead" 
-						// classes="table-responsive" 
-						{ ...props.baseProps } 
-						pagination={paginationFactory({
-							sizePerPage: 50
-						})} 
-						overlay={ overlayFactory({ spinner: true, background: 'rgba(192,192,192,0.3)' }) }
-						loading={!loaded}
-						onTableChange={onTableChange}
 						
-					/>
+						{!remote && activeTable.columns.length > 0 &&
+						<div>
+							<div style={{marginBottom: '1rem'}}>
+						
+								<a href={`https://encode3-companion.s3.us-east-2.amazonaws.com/${activeTable.s3_object}`} target='_blank' download={`${activeTable.id}.csv`}>
+									<ExportCSVButton className="btn-primary" onClick={downloadRemoteCSV} { ...props.csvProps } >Export Entire CSV</ExportCSVButton>
+								</a>
+								<ExportCSVButton style={{marginLeft: "5px"}} className="btn-primary" { ...props.csvProps } >Export Data Below</ExportCSVButton>						
+					
+								<SearchBar { ...props.searchProps } style={{marginLeft: "3rem"}}/>					 
+							</div>
+							<BootstrapTable bootStrap4={true}
+							wrapperClasses="container table-responsive remote-table tableFixHead" 
+							// classes="table-responsive" 
+							{ ...props.baseProps } 
+							pagination={pagination} 
+							overlay={ overlayFactory({ spinner: true, background: 'rgba(192,192,192,0.3)' }) }
+							loading={!loaded}
+							noDataIndication="Table is Empty"
+							// onTableChange={onTableChange}
+							
+						/>
+						</div>
+						}
+						{remote && 
+						<div style={{marginBottom: "2rem"}}>
+							<div style={{marginBottom: '1rem'}}>
+						
+							<a href={`https://encode3-companion.s3.us-east-2.amazonaws.com/${activeTable.s3_object}`} target='_blank' download={`${activeTable.id}.csv`}>
+								<ExportCSVButton className="btn-primary" onClick={downloadRemoteCSV} { ...props.csvProps } >Export Entire CSV</ExportCSVButton>
+							</a>
+							</div>
+							<p style={{fontSize: "14pt"}}>Table only available as downloadable csv</p>
+						</div>
+						}
+						
 					</div>
-					</div>
-					}
+					
 					 
-				 </div>
+				 
 				 )
 			 }
 		 </ToolkitProvider>

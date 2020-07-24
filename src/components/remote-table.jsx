@@ -171,7 +171,9 @@ export const RemoteTable = ({ id}) => {
 		if (!new_table.id.includes("supplementary_table_23")){
 			new_table.data = new_table.data.map((item) => {
 				for (var key of Object.keys(item)) {
-					item[key] = item[key].toLocaleString('en-us')
+                    if(key != "% overlap with cCREs"){
+                        item[key] = item[key].toLocaleString('en-us')
+                    }
 				}
 				return item
 			})}

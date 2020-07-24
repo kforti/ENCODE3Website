@@ -2,7 +2,18 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { RemoteTable } from './remote-table';
+import { LocalTable } from './common/table';
 
+const REMOTE_TABLES = [
+	"supplementary_table_11",
+	"supplementary_table_10",
+	"supplementary_table_22d",
+	"supplementary_table_22e",
+	"supplementary_table_22f",
+	"supplementary_table_22h",
+	"supplementary_table_22i",
+	"supplementary_table_22j",
+	]
 
 const Tab = ({ children }) => (
     <div>
@@ -66,10 +77,13 @@ export const TablesCollection = ({table_pages, page}) => {
 			<div><h2>{activePage.title}</h2>
 				{activePage.tables.map((id) => {
 					return(
-						<RemoteTable 
-							id={id}
-							key={id}
-							/>
+						// <RemoteTable 
+						// 	id={id}
+						// 	key={id}
+						// 	/>
+						<LocalTable
+						id={id}
+						remote={REMOTE_TABLES.includes(id)}/>
 					)}	
 				)}
 			</div>
