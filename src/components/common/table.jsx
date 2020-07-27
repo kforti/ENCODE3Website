@@ -58,12 +58,14 @@ const getRemoteTable = (id) => {
 
 
 const getTable10 = (id) =>{
-	let table = new Table(id,
+	let table = new Table(
+		id,
 		0,
 		[],
 		[],
 		true, 
 		"Supplementary Table 10 - Human-cCREs",
+		"",
 		"supplementary_table_10.csv",
 		"tables/supplementary_table_10/supplementary_table_10.csv",
 	)
@@ -77,7 +79,8 @@ const getTable11 = (id) => {
 		[],
 		[],
 		true,
-		"Supplementary Table 11 - Mouse-cCREs", 
+		"Supplementary Table 11 - Mouse-cCREs",
+		"", 
 		"supplementary_table_11.csv",
 		"tables/supplementary_table_11/supplementary_table_11.csv",
 	)
@@ -92,6 +95,7 @@ const getTable22f = (id) => {
 		[],
 		true,
 		"Supplementary Table 22f. Ranked limb e11.5 mouse elements", 
+		"",
 		"supplementary_table_22f.csv",
 		"tables/supplementary_table_22/supplementary_table_22f.csv",
 	)
@@ -104,7 +108,8 @@ const getTable22d = (id) => {
 		[],
 		[],
 		true,
-		"Supplementary Table 22d. Ranked midbrain e11.5 mouse elements", 
+		"Supplementary Table 22d. Ranked midbrain e11.5 mouse elements",
+		"", 
 		"supplementary_table_22d.csv",
 		"tables/supplementary_table_22/supplementary_table_22d.csv",
 	)
@@ -119,6 +124,7 @@ const getTable22e = (id) => {
 		[],
 		true,
 		"Supplementary Table 22e. Ranked hindbrain e11.5 mouse elements", 
+		"",
 		"supplementary_table_22e.csv",
 		"tables/supplementary_table_22/supplementary_table_22e.csv",
 	)
@@ -132,7 +138,8 @@ const getTable22h = (id) => {
 		[],
 		[],
 		true,
-		"Supplementary Table 22h. Ranked forebrain e12.5 mouse elements", 
+		"Supplementary Table 22h. Ranked forebrain e12.5 mouse elements",
+		"", 
 		"supplementary_table_22h.csv",
 		"tables/supplementary_table_22/supplementary_table_22h.csv",
 	)
@@ -146,7 +153,8 @@ const getTable22i = (id) => {
 		[],
 		[],
 		true,
-		"Supplementary Table 22i. Ranked heart e12.5 mouse elements", 
+		"Supplementary Table 22i. Ranked heart e12.5 mouse elements",
+		"", 
 		"supplementary_table_22i.csv",
 		"tables/supplementary_table_22/supplementary_table_22i.csv",
 	)
@@ -160,7 +168,8 @@ const getTable22j = (id) => {
 		[],
 		[],
 		true,
-		"Supplementary Table 22j. Ranked limb e12.5 mouse elements", 
+		"Supplementary Table 22j. Ranked limb e12.5 mouse elements",
+		"", 
 		"supplementary_table_22j.csv",
 		"tables/supplementary_table_22/supplementary_table_22j.csv",
 	)
@@ -277,6 +286,8 @@ export const LocalTable = ({ id, remote }) => {
 //    }
 
    const downloadRemoteCSV = () => {
+	   console.log(activeTable)
+	   console.log(`https://encode3-companion.s3.us-east-2.amazonaws.com/${activeTable.s3_object}`)
 	   window.open(`https://encode3-companion.s3.us-east-2.amazonaws.com/${activeTable.s3_object}`,'_blank')
    }
 
