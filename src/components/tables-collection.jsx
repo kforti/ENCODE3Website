@@ -71,7 +71,7 @@ export const TablesCollection = ({table_pages, page}) => {
 	        <div className="col-xs-12">
 	          <div className="alert alert-info" style={{fontSize: "16pt"}}>
 	              <span className="glyphicon glyphicon-info-sign" style={{marginRight: "10px"}}></span>
-				  These tables are interactive. Click the column headers to sort, use the filter operators to filter columns, and click the CSV buttons to download the entire table contents in CSV format.
+				  These tables are interactive. Click the column headers to sort, use the search bar to filter results, and click the CSV buttons to download the entire table contents in CSV format.
 	          </div>
 	          
 			<div><h2>{activePage.title}</h2>
