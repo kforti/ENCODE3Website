@@ -21,8 +21,11 @@ export const ContactPage = () => {
         <div>
         <Row>
             <Col></Col>
-            <Col><h4 >Contact Information:</h4></Col>
-            <Col></Col>
+            <Col xs={6}>
+                <h4 >Questions or comments? Please contact our team through our 
+                    <a href="https://groups.google.com/forum/#!forum/encode-ccre-registry" target="_blank"> Google Group</a>.
+                </h4>
+            </Col>
             <Col></Col>
             <Col></Col>
         </Row>

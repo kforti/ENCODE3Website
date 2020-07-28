@@ -182,6 +182,12 @@ export const LocalTable = ({ id, remote }) => {
 	const [loaded, setLoaded] = useState(false);
 	const [loading, setLoading] = useState(false);
 	
+	useEffect(() => {
+		return(() => {
+			console.log("finished")
+		})
+	}, [])
+
 
 	useEffect(() => {
 		if(!id){
@@ -244,21 +250,34 @@ export const LocalTable = ({ id, remote }) => {
 		});
 	}
 	const preProcessTable = (new_table) => {
-		if (!new_table.id.includes("supplementary_table_23")){
-			new_table.data = new_table.data.map((item) => {
-				for (var key of Object.keys(item)) {
-					item[key] = item[key].toLocaleString('en-us')
-				}
-				return item
-			})
-		}
+		// if (!new_table.id.includes("supplementary_table_23")){
+		// 	new_table.data = new_table.data.map((item) => {
+		// 		for (var key of Object.keys(item)) {
+		// 			item[key] = item[key].toLocaleString('en-us')
+		// 		}
+		// 		return item
+		// 	})
+		// }
 		new_table.columns = new_table.columns.map((item) => {
 			item.sort = true;
 			item.sortFunc = sortFunc
 			item.headerStyle = {backgroundColor: "#efefef", border: "0.2px solid #00000073"}
+			item.formatter = (cell) => {
+				console.log(cell)
+				if (!new_table.id.includes("supplementary_table_23")){
+					
+						cell = cell.toLocaleString('en-us')
+				}
+						
+			// 	if(parseFloat(cell)){
+			// 		cell = typeof cell === 'string' ? parseFloat(cell.replace(/[,]/g, '')) : cell
+			// }
+			return cell
+		}
 			return item
 		})
 	}
+
 	const sortFunc = (a, b, order, dataField, rowA, rowB) => {
 		if(parseFloat(a) && parseFloat(b)){
 			a = typeof a === 'string' ? parseFloat(a.replace(/[,]/g, '')) : a
@@ -276,6 +295,19 @@ export const LocalTable = ({ id, remote }) => {
 	   }
    }
 
+   function customMatchFunc({
+	searchText,
+	value,
+	column,
+	row
+  }){
+	console.log("search")
+	if (typeof value !== 'undefined') {
+	  return value.startsWith(searchText);
+	}
+	return false;
+  }
+
 //    const onTableChange = (type, { page, sizePerPage, sortField, sortOrder, data }) => {
 // 	   console.log(page)
 // 	   setLoading(true);
@@ -291,7 +323,6 @@ export const LocalTable = ({ id, remote }) => {
 	   window.open(`https://encode3-companion.s3.us-east-2.amazonaws.com/${activeTable.s3_object}`,'_blank')
    }
 
-   console.log(activeTable)
     return(
     <div>
 		{!loaded && (
@@ -312,13 +343,14 @@ export const LocalTable = ({ id, remote }) => {
 			
 		 <ToolkitProvider
 			 keyField= 'field0' data={ activeTable.data } columns={ activeTable.columns }
-			 exportCSV= {{fileName: activeTable.fileName}}
-			 search
+			 exportCSV= {{fileName: `${activeTable.id}.csv`, onlyExportFiltered: true, exportAll: false}}
+			 search={ { searchFormatted: false } }
 			 >
 			 {
 				 props => (
 					 <div>
-					
+						 
+						 {activeTable.columns.length == 0 && props.searchProps.onSearch("")}
 						
 						{!remote && activeTable.columns.length > 0 &&
 						<div>
@@ -344,13 +376,23 @@ export const LocalTable = ({ id, remote }) => {
 						/>
 						</div>
 						}
-						{remote && 
+						{remote &&
 						<div style={{marginBottom: "2rem"}}>
 							<div style={{marginBottom: '1rem'}}>
 						
 							<a href={`https://encode3-companion.s3.us-east-2.amazonaws.com/${activeTable.s3_object}`} target='_blank' download={`${activeTable.id}.csv`}>
 								<ExportCSVButton className="btn-primary" onClick={downloadRemoteCSV} { ...props.csvProps } >Export Entire CSV</ExportCSVButton>
 							</a>
+							{activeTable.id == "supplementary_table_10" &&
+								<a href="http://gcp.wenglab.org/GRCh38-ccREs.bed" target='_blank'>
+								<Button className="btn-primary" style={{marginLeft: "5px"}}>Download bed File</Button>
+							</a>
+							}
+							{activeTable.id == "supplementary_table_11" &&
+								<a href="http://gcp.wenglab.org/mm10-ccREs.bed" target='_blank'>
+								<Button className="btn-primary" style={{marginLeft: "5px"}}>Download bed File</Button>
+							</a>
+							}
 							</div>
 							<p style={{fontSize: "14pt"}}>Table only available as downloadable csv</p>
 						</div>
